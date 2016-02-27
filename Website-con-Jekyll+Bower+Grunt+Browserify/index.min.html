@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+    
+      <title>Website con Jekyll+Bower+Grunt+Browserify - Alfredo Llanos</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+      
+      <link rel="stylesheet" href="../build/style.un.min.css">
+      
+    
+
+    <link href='http://fonts.googleapis.com/css?family=Arvo:700,700italic|Roboto:400italic,100,300,100italic,300italic,400' rel='stylesheet' type='text/css'>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  </head>
+<body>
+
+  <div class="loader">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="nav-container">
+  <nav class="top-bar overlay-bar offscreen-menu drop-shadow">
+
+    <div class="container">
+    
+      <div class="row utility-menu">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="utility-inner clearfix">
+            <span class="alt-font btn-sm">
+              <i class="icon icon_pin"></i> Bilbao | 43.2569° N, 2.9236° W</span>
+            <div class="pull-right">
+              <ul class="social-icons text-right">
+                <li>
+                  <a href="https://twitter.com/biojazzard">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/alfredo.llanos">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://plus.google.com/+AlfredoLlanos/">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div><!--end of row-->
+    
+    
+      <div class="row nav-menu">
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+          <a href="/">
+            <div id="logo" class="logo" data-src="http://biojazzard.github.io/img/dot-a.svg" data-desc="DOT-A Alfredo Llanos">
+            </div>
+          </a>
+        </div>
+      
+        <div class="col-sm-9 col-sm-9 col-md-10 col-lg-10">
+          <div class="offscreen-toggle">
+            <i class="icon icon_menu text-white pull-right"></i>
+          </div>
+        </div>
+      </div><!--end of row-->
+      
+    </div><!--end of container-->
+
+    <div class="offscreen-container">
+        <div class="made-with">
+          Made with Love ...
+        </div>
+        <div id="smiley" class="smiley" data-src="http://biojazzard.github.io/img/smiley.svg" data-desc="smiley">
+        </div>
+        <div class="made-with to-bottom">
+          and some acid tracks!,
+        </div>
+    </div>
+
+  </nav>
+</div>
+
+  
+  
+
+  <div class="main-container">
+  <header class="title">
+      <div class="background-image-holder parallax-background">
+        <img class="background-image" alt="Background Image" src="http://biojazzard.github.io/img/hero10.jpg">
+      </div>
+      
+      <div class="container align-bottom">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 class="text-white">Website con Jekyll+Bower+Grunt+Browserify</h1>
+            <p><span class="sub alt-font text-white">19 October, 2014</span></p>
+          </div>
+        </div><!--end of row-->
+      </div><!--end of container-->
+  </header>
+  
+  <section class="article-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+          <div class="article-body">
+            <p><em>This is a full walkthrough of how I created a static website with Jekyll, keeping it fast and mobile-friendly.</em></p>
+
+<p><a href="http://jekyllrb.com/">Jekyll</a> is a static site generator: it transforms plain text files (in <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for content, <a href="http://wiki.shopify.com/Liquid">Liquid</a> for templates) into an HTML, CSS, and JavaScript website ready for deployment.</p>
+
+<p>There are other options out there to create a website or blog, like the popular <a href="http://wordpress.org/">Wordpress</a>, or the more recent <a href="http://www.squarespace.com/">Squarespace</a> and <a href="http://tryghost.org/">Ghost</a>. These are <em>dynamic</em>, which means your content is stored in a database and is filled in templates when a user visits the site. They also have an administration section, which allows you to log in and edit your content. That usually makes the website or blog easier to update, especially for less technical people.</p>
+
+<p>But using a static site generator like Jekyll has a few advantages over these other solutions:</p>
+
+<ul>
+<li><p>The website is usually very <strong>fast</strong>: Since it&#39;s only static files, there are no round-trips to a database, and web servers have become really good at serving plain files.</p></li>
+<li><p>It&#39;s also very <strong>scalable</strong>: Even if you have a ton of traffic, it&#39;s easier for a static web server to handle than, for instance, a PHP Wordpress application.</p></li>
+<li><p>It&#39;s very <strong>easy to deploy</strong>: There are many static file web server options out there, you don&#39;t need to hook up and configure a database, or install and maintain any application.</p></li>
+<li><p>You really <strong>own your content</strong>: It&#39;s all plain text files, usually in Markdown, that you can safely keep in your Dropbox or GitHub repository.</p></li>
+<li><p>It&#39;s <strong>extensible</strong>: Since a static site generator like Jekyll only focuses on turning plain text files into HTML, and provides you with a plugin interface, you can basically do anything: add third-party libraries like Disqus or Google Analytics, create your own logic to insert images into pages, etc.</p></li>
+</ul>
+
+<p>Building a website &quot;from scratch&quot; using Jekyll might feel a little complicated at first, as there are a lot of moving parts, things to configure, etc. In this post, I&#39;d like to walk you through how I went about it, and hopefully that will help you get started more quickly and serve as a checklist of the things you need to think about for your website. Keep in mind that this is just <em>one</em> way of doing things. You are more than welcome to adapt this workflow to your liking!</p>
+
+<p>This is also a fairly long read, since I wanted to include the end-to-end process from installing the tools to deploying the site. The table of contents below will help you jump to different sections.</p>
+
+<p>If you want, you can follow along with this <a href="https://github.com/nicolashery/nicolashery.com">source code</a>.</p>
+
+<h2>Table of contents</h2>
+
+<ul>
+<li><a href="#installing-jekyll">Installing Jekyll</a></li>
+<li><a href="#installing-grunt">Installing Grunt</a></li>
+<li><a href="#workflow">Workflow</a></li>
+<li><a href="#css">CSS</a></li>
+<li><a href="#javascript">JavaScript</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#code-blocks">Code blocks</a></li>
+<li><a href="#comments">Comments</a></li>
+<li><a href="#seo">SEO</a></li>
+<li><a href="#analytics">Analytics</a></li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<h2 id="installing-jekyll">Installing Jekyll</h2>
+
+<p>We will use <a href="http://jekyllrb.com/">Jekyll</a> (Ruby) to generate the HTML files, the <a href="http://gruntjs.com/">Grunt</a> build tool (Node.js) to compile and minify CSS and JavaScript files, and <a href="http://pygments.org/">Pygments</a> (Python) for code syntax highlighting in our posts.</p>
+
+<p>This means you will need to have installed:</p>
+
+<ul>
+<li><a href="http://www.ruby-lang.org/">Ruby</a> with <a href="http://rubygems.org/">RubyGems</a></li>
+<li><a href="http://nodejs.org/">Node.js</a> with <a href="https://npmjs.org/">NPM</a></li>
+<li><a href="http://www.python.org/">Python</a> with <a href="http://www.pip-installer.org/">pip</a></li>
+</ul>
+
+<p>If you don&#39;t have all of these installed and are using a Mac, you can check out my <a href="https://github.com/nicolashery/mac-dev-setup">Mac Dev Setup</a> guide for help.</p>
+
+<p>Install Jekyll with:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install jekyll
+</code></pre></div>
+<p>Jekyll has great <a href="http://jekyllrb.com/docs/home/">documentation</a> to help you learn how to use it.</p>
+
+<p>A basic directory structure looks something like this:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">.
+├── _includes/
+|   ├── footer.html
+|   ├── header.html
+|   └── posts.html
+├── _plugins/
+|   ├── asset_url.rb
+|   └── image_tag.rb
+├── _layouts/
+|   ├── default.html
+|   ├── page.html
+|   └── post.html
+├── _posts/
+|   ├── 2013-02-11-pictures-of-cats.md
+|   └── 2013-01-31-hello-world.md
+├── _site/
+├── _config.yml
+└── index.html
+</code></pre></div>
+<p>The static website is generated in the <code>_site</code> folder. Any other file or directory than the ones listed above (like CSS and JavaScript files) will be copied over into the <code>_site</code> directory, except if you explicitly exclude them in <code>_config.yml</code>.</p>
+
+<p>We use <a href="http://git-scm.com/">Git</a> for version control, so let&#39;s immediately add <code>_site</code> to our <code>.gitignore</code> file.</p>
+
+<h2 id="installing-grunt">Installing Grunt</h2>
+
+<p>Jekyll processes our layout and content text files into HTML. We will use <a href="http://gruntjs.com/">Grunt</a> to process our CSS and JavaScript files.</p>
+
+<p>Install the Grunt command line tool with:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>npm install -g grunt-cli
+</code></pre></div>
+<p>Let&#39;s create directories for our source files, and add them to the <code>exclude</code> list in <code>_config.yml</code> so they are not copied to the site:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">...
+├── css/
+└── js/
+</code></pre></div>
+<p>If you use preprocessors, like <a href="http://sass-lang.com/">Sass</a>, <a href="http://lesscss.org/">LESS</a>, or <a href="http://coffeescript.org/">CoffeeScript</a>, you can add corresponding <code>sass/</code>, <code>less/</code>, or <code>coffee/</code> directories.</p>
+
+<p>We also create directories for our concatenated (<code>debug/</code>) and minified (<code>build/</code>) files, which will be copied to the site, and add them to <code>.gitignore</code> so they are not tracked in version control:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">...
+├── debug/
+└── build/
+</code></pre></div>
+<p>Finally, we create an <code>assets/</code> directory for larger files such as images, also excluded from version control in <code>.gitignore</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">...
+└── assets/
+</code></pre></div>
+<p>A word of explanation: we will create our stylesheets and scripts in their source directories, using as many files as we like to keep the code maintainable. We then combine those files into one CSS file <code>style.css</code> and one JavaScript file <code>main.js</code> in the <code>debug/</code> directory, which keeps the number of HTTP requests to a minimum for best performance. To do so, we can use the following Grunt <a href="http://gruntjs.com/plugins">plugins</a>, depending on which tools you use (I like <a href="http://compass-style.org/">Compass</a> for CSS and <a href="http://browserify.org/">Browserify</a> for JavaScript):</p>
+
+<ul>
+<li><a href="https://npmjs.org/package/grunt-contrib-concat">grunt-contrib-concat</a></li>
+<li><a href="https://npmjs.org/package/grunt-contrib-sass">grunt-contrib-sass</a></li>
+<li><a href="https://npmjs.org/package/grunt-contrib-compass">grunt-contrib-compass</a></li>
+<li><a href="https://npmjs.org/package/grunt-contrib-less">grunt-contrib-less</a></li>
+<li><a href="https://npmjs.org/package/grunt-browserify2">grunt-browserify2</a></li>
+<li><a href="https://npmjs.org/package/grunt-contrib-coffee">grunt-contrib-coffee</a></li>
+</ul>
+
+<p>For deployment, we will also minify the files into <code>style.min.css</code> and <code>main.min.js</code> in the <code>build/</code> directory, using:</p>
+
+<ul>
+<li><a href="https://npmjs.org/package/grunt-contrib-cssmin">grunt-contrib-cssmin</a></li>
+<li><a href="https://npmjs.org/package/grunt-contrib-uglify">grunt-contrib-uglify</a></li>
+</ul>
+
+<p>All these tasks are defined in the <code>Gruntfile.js</code> of your project. You can check out Grunt&#39;s <a href="http://gruntjs.com/getting-started">documentation</a> and my example <a href="https://github.com/nicolashery/nicolashery.com/blob/master/Gruntfile.js">Gruntfile.js</a> for help setting it up.</p>
+
+<h2 id="workflow">Workflow</h2>
+
+<p>I set up some Grunt tasks to help me automate my workflow. During development, when I&#39;m modifying my site layout, writing content, changing CSS, etc., I open up a first terminal and run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>grunt debug
+</code></pre></div>
+<p>This tasks watches for changes in CSS and JS files (and/or Sass, LESS, CoffeeScript), compiles and concatenates source files in the <code>debug/</code> directory. In a second terminal I run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>grunt server
+</code></pre></div>
+<p>This task is basically an alias for <code>jekyll serve --watch</code>, which runs the development server on <code>http://localhost:4000/</code> and also watches for changes in Liquid layout or Markdown content files and rebuilds the site.</p>
+
+<p>Before deployment, I run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>grunt build
+</code></pre></div>
+<p>This compiles, concatenates, and minifies styles and scripts, as well as re-generates the whole Jekyll site, and uses the environment variable <code>JEKYLL_ENV</code> by setting it to <code>&quot;production&quot;</code> to tell my Jekyll templates to point to the minified files in the <code>build/</code> directory instead of <code>debug/</code>.</p>
+
+<p>We will see later, but to deploy the website and publish changes, I use the command:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>jekyll-s3
+</code></pre></div>
+<p>The Grunt tasks described above use a combination of the plugins mentioned earlier. I invite you to check out my <a href="https://github.com/nicolashery/nicolashery.com/blob/master/Gruntfile.js">Gruntfile.js</a> and use it as inspiration for your own workflow.</p>
+
+<h2 id="css">CSS</h2>
+
+<p>Writing plain CSS has its limits, and there are preprocessors like <a href="http://sass-lang.com/">Sass</a> (Ruby) and <a href="http://lesscss.org/">LESS</a> (Node.js) that help you overcome them. There are also frameworks like <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> (LESS) and <a href="http://foundation.zurb.com/">Foundation</a> (Sass) that give you a head start with styles for elements like grids, buttons, typography, etc.</p>
+
+<p>Personally, I use Sass with <a href="http://compass-style.org/">Compass</a>. I also like <a href="http://inuitcss.com/">Inuit.css</a> as a lightweight, extensible framework. I will explain how to set those up, but you can use whichever tool you prefer.</p>
+
+<p>To install Compass and its Inuit framework plugin:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install compass compass-inuit
+</code></pre></div>
+<p>I then configure the Grunt plugin <a href="https://npmjs.org/package/grunt-contrib-compass">grunt-contrib-compass</a> in my <code>Gruntfile.js</code> and add it to my <code>grunt debug</code> and <code>grunt build</code> tasks.</p>
+
+<p>Using preprocessors helps you keep your CSS maintainable and modular. If interested, you can dive into the work around <a href="http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/">Object-Oriented CSS (OOCSS)</a> or <a href="http://smacss.com/">SMACS</a>. To start simple, I find it a good practice to separate styles specific to certain parts your website in different files, and prefix the CSS rules with those &quot;module&quot; names. For example:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">sass/
+├── ui/
+|   ├── _footer.scss
+|   ├── _header.scss
+|   ├── _page.scss
+|   └── _scaffolding.scss
+├── _config.scss
+└── main.scss
+</code></pre></div><div class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="c1">// _header.scss</span>
+
+<span class="nc">.header--nav</span> <span class="err">{</span>
+  <span class="k">@extend</span> <span class="nc">.nav</span><span class="o">;</span>
+  <span class="k">@extend</span> <span class="nc">.nav--banner</span><span class="o">;</span>
+
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">0</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="c1">// ...</span>
+</code></pre></div>
+<p>Now is a good time to say a few words on building a mobile-friendly website. It has a become best practice to use <a href="http://en.wikipedia.org/wiki/Responsive_web_design">Responsive Web Design</a>, i.e. building a site that adapts nicely to different device screen sizes. To do so, add the following in your <code>&lt;head&gt;</code> HTML tag:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+<p>You can then use CSS3 <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries">media queries</a> to define rules for certain screen sizes. I like the <a href="http://www.html5rocks.com/en/mobile/responsivedesign/">mobile-first</a> approach, so I often design my site for the smallest screen size first, then add rules to complement or override the styles as the screen gets bigger. For example:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">body</span> <span class="p">{</span>
+  <span class="k">max-width</span><span class="o">:</span> <span class="m">700px</span><span class="p">;</span>
+  <span class="k">padding</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>
+  <span class="k">padding-bottom</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">481px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nt">body</span> <span class="p">{</span>
+    <span class="k">padding-top</span><span class="o">:</span> <span class="m">24px</span><span class="p">;</span>
+    <span class="k">padding-right</span><span class="o">:</span> <span class="m">24px</span><span class="p">;</span>
+    <span class="k">padding-left</span><span class="o">:</span> <span class="m">24px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Finally, include the link to the concatenated stylesheet in the <code>&lt;head&gt;</code> tag of <code>_layouts/default.html</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{% if site.env == &#39;production&#39; %}
+  &lt;&amp;gt;link rel=&quot;stylesheet&quot; href=&quot;/build/style.min.css&quot;&amp;lt;&gt;
+{% else %}
+  &lt;&amp;gt;link rel=&quot;stylesheet&quot; href=&quot;/debug/style.css&quot;&lt;&amp;lt;
+{% endif %}
+</code></pre></div>
+<h2 id="javascript">JavaScript</h2>
+
+<p>I use the <a href="http://bower.io/">Bower</a> package manager to install front-end JS libraries, like <a href="http://jquery.com/">jQuery</a>. It has a pretty extensive registry of these front-end <a href="http://sindresorhus.com/bower-components/">components</a>. Some front-end libraries can also be found on <a href="https://npmjs.org/">NPM</a>.</p>
+
+<p>Bower will install libraries in the <code>components/</code> directory. For example:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>bower install jquery fastclick
+</code></pre></div>
+<p>I then use <a href="http://browserify.org/">Browserify</a> and the Grunt plugin <a href="https://npmjs.org/package/grunt-browserify2">grunt-browserify2</a> to combine these different libraries into one single JS file. My main JS file will look something like:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// js/main.js</span>
+
+<span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jquery&#39;</span><span class="p">)</span>
+  <span class="p">,</span> <span class="nx">FastClick</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fastclick&#39;</span><span class="p">);</span>
+
+<span class="c1">// On DOM ready</span>
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="c1">// Eliminates the 300ms delay between a physical tap and the firing of a</span>
+  <span class="c1">// click event on mobile browsers</span>
+  <span class="k">new</span> <span class="nx">FastClick</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+
+  <span class="c1">// ...</span>
+
+<span class="p">});</span>
+</code></pre></div>
+<p>To be able to write <code>require(&#39;jquery&#39;)</code>, you need to use <a href="https://github.com/thlorenz/browserify-shim">browserify-shim</a> in your <code>Gruntfile.js</code> and provide the path to each component.</p>
+
+<p>In your <code>default.html</code> layout, link to the concatenated JS file just before the closing <code>&lt;/body&gt;</code> tag (for best performance):</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">  <span class="c">&lt;!-- ... --&gt;</span>
+  {% if site.env == &#39;production&#39; %}
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/build/app.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  {% else %}
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/debug/app.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+  {% endif %}
+<span class="nt">&lt;/body&gt;</span>
+</code></pre></div>
+<h2 id="images">Images</h2>
+
+<p>Regarding website performance, images are a tricky thing. We took the time to concatenate and minify our CSS and JS files, but a single image can weight more kilobytes than both files combined.</p>
+
+<p>As <a href="http://daverupert.com/about.html">Dave Rupert</a>&#39;s article <a href="http://daverupert.com/2013/06/ughck-images/">&quot;Ughck. Images.&quot;</a> shows, the solution to &quot;Responsive Images&quot; isn&#39;t quite here yet.</p>
+
+<p>In the meantime, I needed something relatively simple that would allow me to include images on a website in a way that keeps it loading fast. I focused on two things:</p>
+
+<ul>
+<li><strong>Lazy load</strong> images only once the user scrolls down to them, thanks to the <a href="https://github.com/sebarmeli/JAIL.git">JAIL</a> jQuery plugin</li>
+<li><strong>Responsive images</strong> that load a different version depending on the screen size and resolution, thanks to a <a href="https://github.com/nicolashery/nicolashery.com/blob/master/js/lib/picturefill.js">modified version</a> of the <a href="https://github.com/scottjehl/picturefill">picturefill</a> library (small tweak to make it compatible with JAIL)</li>
+</ul>
+
+<p>After installing and setting up the JavaScript libraries, I create a <a href="http://jekyllrb.com/docs/plugins/">Jekyll plugin</a> called <a href="https://github.com/nicolashery/nicolashery.com/blob/master/_plugins/image_tag.rb">image_tag.rb</a>, that allows me to easily insert images in my Markdown files with a custom Liquid tag:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{% image my-image.png &quot;Image alt text&quot; &quot;Optional image caption&quot; %}
+</code></pre></div>
+<p>With this in place, pages of the website should feel faster as images aren&#39;t loaded until they become visible in the browser viewport.</p>
+
+<p>I chose this solution because it is simple, and my website doesn&#39;t use images much, but there are other options out there. For instance, <a href="http://paulstamatiou.com/about">Paul Stamatiou</a>, who also does photograpy, offers a more sophisticated solution in his article <a href="http://paulstamatiou.com/responsive-retina-blog-development-part-2">&quot;Developing a responsive, Retina-friendly site&quot;</a>.</p>
+
+<h2 id="code-blocks">Code blocks</h2>
+
+<p>With a blog on programming, I&#39;m going to be using a lot of code examples. It&#39;s important that they look good, both on desktop and mobile.</p>
+
+<p>For syntax highlighting, Jekyll has a nice integration with <a href="">Pygments</a>. To install, run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pip install pygments
+</code></pre></div>
+<p>And add to your <code>_config.yml</code> file:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">pygments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>I like using <strong>fenced code blocks</strong>, as found in <a href="https://help.github.com/articles/github-flavored-markdown">GitHub-Flavored Markdown</a>, instead of Liquid <code>highlight</code> tags. To do so, I switched my Jekyll Markdown parser to <a href="https://github.com/vmg/redcarpet">redcarpet</a>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install redcarpet
+</code></pre></div>
+<p>And add to the <code>_config.yml</code> file:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">redcarpet</span>
+</code></pre></div>
+<p>And now you can include code blocks with:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">```javascript
+var msg = &#39;Hello world!&#39;;
+```
+</code></pre></div>
+<p>For me, this also has the benefit of making the Markdown files of my blog posts compatible with <a href="http://markedapp.com/">Marked</a> (also check &quot;Strip YAML Front Matter&quot; in Marked&#39;s preferences).</p>
+
+<p>As I said, I find it important that the code blocks look good on a small mobile screen as well as the desktop. To achieve this, I first use the following CSS rule:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">pre</span> <span class="p">{</span>
+  <span class="k">white-space</span><span class="o">:</span> <span class="n">pre</span><span class="o">-</span><span class="n">wrap</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This will wrap the code when a line is longer than the screen size, instead of displaying a horizontal scroll bar (I find horizontal scrolling awkward, but that might be just me). Wrapped code isn&#39;t great though, and a little difficult to read. To limit this on small screens, diminish the font-size to make as much code as possible fit on one line, using media queries:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">pre</span><span class="o">,</span> <span class="nt">pre</span> <span class="o">&gt;</span> <span class="nt">code</span> <span class="p">{</span>
+  <span class="c">/* Make more code fit on small screens */</span>
+  <span class="k">font-size</span><span class="o">:</span> <span class="m">14px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">481px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nt">pre</span><span class="o">,</span> <span class="nt">pre</span> <span class="o">&gt;</span> <span class="nt">code</span> <span class="p">{</span>
+    <span class="c">/* Bigger font on bigger screens */</span>
+    <span class="k">font-size</span><span class="o">:</span> <span class="m">16px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Finally, for the colors of the syntax highlighting, I like the <a href="http://ethanschoonover.com/solarized">Solarized</a> theme. I put together <a href="https://gist.github.com/nicolashery/5765395">two CSS stylesheets</a> to use with Pygments and Jekyll, the &quot;Light&quot; and &quot;Dark&quot; versions.</p>
+
+<p>Here I realized the importance of <strong>testing a website on an actual mobile device</strong> (versus just in a resized desktop browser). Indeed, the Solarized Dark theme was fine on the bright screen of my MacBook Air, but too dark and diffictult to read on my iPhone screen. That&#39;s one of the reasons I opted for Solarized Light.</p>
+
+<h2 id="comments">Comments</h2>
+
+<p>Many blogs and websites use <a href="http://disqus.com/">Disqus</a> to manage their comments. Setting it up with Jekyll is <a href="http://help.disqus.com/customer/portal/articles/472138-jekyll-installation-instructions">very easy</a>.</p>
+
+<p>First you need to <a href="https://disqus.com/profile/signup/">create a Disqus account</a> if you don&#39;t have one already, then <a href="https://disqus.com/admin/signup/">register your site</a>.</p>
+
+<p>Once that is done, paste the universal code Disqus gives you into a Jekll include, <code>_includes/disqus.html</code>, and replace the shortname with a Liquid output:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;{{ site.disqus.shortname }}&#39;</span><span class="p">;</span> 
+</code></pre></div>
+<p>Then, in your <code>_config.yml</code>, insert your Disqus shortname:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">disqus</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">shortname</span><span class="p-Indicator">:</span> <span class="s">&#39;nicolashery&#39;</span>
+</code></pre></div>
+<p>Now, anywhere on your site you want to add Disqus comments (for instance, in <code>_layouts/post.html</code>), all you have to do is include <code>disqus.html</code> with the Liquid tag:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{% include disqus.html %}
+</code></pre></div>
+<h2 id="seo">SEO</h2>
+
+<p>I&#39;ll be honest, I don&#39;t know much about <a href="http://en.wikipedia.org/wiki/Search_engine_optimization">Search Engine Optimization</a>. This might be a bit naive, but to me the best way to be on top of search results is to have great content, tell people about it, and if they like it they will link to your content, and that will bring more people and help your ranking.</p>
+
+<p>I did learn however, mostly thanks to <a href="https://segment.io/">Segment.io</a>&#39;s article <a href="https://segment.io/academy/the-quickest-wins-in-seo/">&quot;The Quickest Wins in SEO&quot;</a>, that there are a couple basic steps you should take.</p>
+
+<p>First, it is good to include a short meta description in the <code>&lt;head&gt;</code> tag of your page, as Google will display that under the link to your site in the search results:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;Short description of my website that will appear in search results.&quot;</span><span class="nt">&gt;</span>
+</code></pre></div>
+<p>Next, add a <a href="http://www.robotstxt.org/">robots.txt</a> file in your root directory, which tells crawlers (but doesn&#39;t force them to) which parts of the site they should index or not. Don&#39;t worry about it too much, just use the simplest form of <code>robots.txt</code>:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">User-agent: *
+Allow: /
+</code></pre></div>
+<p>I&#39;m not sure if this is really SEO-related, but it&#39;s also good practice to include an <code>error.html</code> or <code>404.html</code> file in the root directory, that will be displayed for example if a user mistypes a link to your site. Usually that page displays a short &quot;Not Found&quot; message with a link to other parts of the site (example: <a href="https://github.com/404">GitHub 404</a>).</p>
+
+<p>Finally, include a <a href="http://en.wikipedia.org/wiki/Site_map">Sitemap</a>, which is an XML file that helps crawlers find content to index on your site. With Jekyll, all you need to do is copy the <a href="https://github.com/danielgroves/jekyll-plugins/blob/master/sitemap_generator.rb">sitemap_generator.rb</a> plugin to your <code>_plugins</code> folder. Re-generate the site, and a <code>sitemap.xml</code> file will appear in the <code>_site</code> folder.</p>
+
+<h2>RSS feed</h2>
+
+<p>An <a href="http://en.wikipedia.org/wiki/RSS">RSS</a> feed is a good way for visitors to keep updated on new blog posts when they add it to their feed reader.</p>
+
+<p>To generate the XML file for your RSS feed, just copy the <a href="https://github.com/snaptortoise/jekyll-rss-feeds/blob/master/feed.xml">feed.xml</a> template to your project root directory, and add a link to <code>/feed.xml</code> somewhere on your site.</p>
+
+<h2 id="analytics">Analytics</h2>
+
+<p>I&#39;m going to explain how to set up <a href="http://www.google.com/analytics/">Google Analytics</a> on the site, but you can adapt this to other analytics services like <a href="https://mixpanel.com">Mixpanel</a>, <a href="https://www.gosquared.com/">GoSquared</a>, etc. (for a nice list of different services out there, see the <a href="https://segment.io/docs/integrations">Segment.io documentation</a>).</p>
+
+<p>First, register for Google Analytics with your Google account, if you haven&#39;t done so already.</p>
+
+<p>Then, add the code snippet provided in the <a href="https://support.google.com/analytics/answer/1008080?hl=en&amp;ref_topic=1008079">documentation</a> into a Jekyll include, like <code>_includes/google_analytics.html</code>. Replace the tracking code with a Liquid output:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">_gaq</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">&#39;_setAccount&#39;</span><span class="p">,</span> <span class="s1">&#39;{{ site.google_analytics_id }}&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>You could put your Google Analytics ID in the <code>_config.yml</code>, but it&#39;s best not to commit these kind of tokens inside the Git repository. Instead, I set it as an environment variable in the terminal that&#39;s running the Jekyll build. In order to do this, I created a simple <a href="https://github.com/nicolashery/nicolashery.com/blob/master/_plugins/environment_variables.rb">environment_variables.rb</a> plugin in which I add the line:</p>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">site</span><span class="o">.</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;google_analytics_id&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;GOOGLE_ANALYTICS_ID&#39;</span><span class="o">]</span>
+</code></pre></div>
+<p>That way I can run:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">GOOGLE_ANALYTICS_ID</span><span class="o">=</span><span class="s1">&#39;UA-XXXXX-Y&#39;</span>
+<span class="nv">$ </span>grunt build
+</code></pre></div>
+<p>Which will make the environment variable&#39;s value available to the Liquid template through <code>site.google_analytics_id</code>.</p>
+
+<p>As explained in Google&#39;s documentation, include the snippet just before the closing <code>&lt;/head&gt;</code> tag with:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">  <span class="c">&lt;!-- ... --&gt;</span>
+  {% include google_analytics.html %}
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div>
+<h2 id="deployment">Deployment</h2>
+
+<p>Deploying has a few different pieces that we&#39;ll need to select:</p>
+
+<ul>
+<li>A host for the static files (ex: <a href="http://aws.amazon.com/s3/">Amazon S3</a>, <a href="https://help.github.com/categories/20/articles">GitHub Pages</a>)</li>
+<li>A registrar for the domain name (ex: <a href="https://www.gandi.net/">Gandi</a>)</li>
+<li>Optionally, a separate <a href="http://en.wikipedia.org/wiki/Domain_Name_System">DNS</a> provider (ex: <a href="https://dnsimple.com/">DNSimple</a>, <a href="http://aws.amazon.com/route53/">Amazon Route 53</a>)</li>
+<li>Optionally, a CDN (ex: <a href="http://aws.amazon.com/cloudfront/">CloudFront</a>)</li>
+</ul>
+
+<p>As mentioned at the beginning of this post, one advantage of a static website is that it can be deployed to just about any host that can serve static files. Here I&#39;ll explain how to deploy to <a href="http://aws.amazon.com/s3/">Amazon S3</a>, which has a &quot;pay-according-to-traffic&quot; pricing model (it ends up being pretty cheap, unless you really have a ton of traffic). If you don&#39;t have many images or other big files, <a href="https://help.github.com/categories/20/articles">GitHub Pages</a> is also a nice option.</p>
+
+<p>I&#39;m also going to explain how to host your site at the &quot;root&quot; (or &quot;naked&quot; or &quot;apex&quot;) domain (i.e. &quot;nicolashery.com&quot; instead of &quot;www.nicolashery.com&quot;), which is a little more tricky. This is my preference, but if you&#39;d like to host at the &quot;www&quot; domain, you should be able to adapt these instructions fairly easily.</p>
+
+<p>Pushing a Jekyll website to Amazon S3 is really easy, thanks to the <a href="https://github.com/laurilehmijoki/jekyll-s3">jekyll-s3</a> tool. Create an <a href="http://aws.amazon.com/">Amazon Web Services</a> (AWS) account if you don&#39;t have one already, then install the tool with:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install jekyll-s3
+</code></pre></div>
+<p>In the Amazon S3 console, create a bucket (select the &quot;US Standard&quot; region) with a name that matches your domain name, (in my case &quot;nicolashery.com&quot;).</p>
+
+<p><strong>Note</strong>: Since I&#39;m hosting at the root domain &quot;nicolashery.com&quot;, I will also create a second bucket &quot;www.nicolashery.com&quot; that I will leave empty, and configure it to redirect all requests to &quot;nicolashery.com&quot;, as explained in the <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html">AWS documentation</a>.</p>
+
+<p>Next, create a <code>_jekyll_s3.yml</code> file with your Amazon credentials declared as environment variables:</p>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">s3_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&#39;S3_ID&#39;] %&gt;</span>
+<span class="l-Scalar-Plain">s3_secret</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&#39;S3_SECRET&#39;] %&gt;</span>
+<span class="l-Scalar-Plain">s3_bucket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">nicolashery.com</span>
+<span class="l-Scalar-Plain">gzip</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>Obtain your Amazon credentials from the AWS console (click on your name in the top right and &quot;Security Credentials&quot;), and set the environment variables:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">export </span><span class="nv">S3_ID</span><span class="o">=</span><span class="s1">&#39;YOUR_AWS_S3_ACCESS_KEY_ID&#39;</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">S3_SECRET</span><span class="o">=</span><span class="s1">&#39;YOUR_AWS_S3_SECRET_ACCESS_KEY&#39;</span>
+</code></pre></div>
+<p>Once that is done, run the S3 bucket configuration tool provided with <code>jekyll-s3</code>, which will prepare it to host a static website (for now, say &quot;no&quot; when it asks you if you want to configure it for the CloudFront CDN):</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">configure-s3-website --config-file _jekyll_s3.yml
+</code></pre></div>
+<p>Finally, build your site for production and deploy to Amazon S3 with:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>grunt build
+<span class="nv">$ </span>jekyll-s3
+</code></pre></div>
+<p>You can already visit the live site with the <code>example.com.s3-website-us-east-1.amazonaws.com</code> address provided (replace &quot;example.com&quot; with your domain of course). </p>
+
+<p>To point our domain name to this Amazon S3 bucket, we need to configure its DNS records. If we were hosting at the &quot;www.example.com&quot; domain, all we would need to do is create a <code>CNAME</code> record:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">CNAME www.example.com www.example.com.s3-website-us-east-1.amazonaws.com
+</code></pre></div>
+<p>However, we are hosting at the root domain &quot;example.com&quot;, which requires an <code>A</code> record that has to point to an IP address. This is where it gets tricky: the IP address of our Amazon S3 can change.</p>
+
+<p>To work around that, we need to use a separate DNS provider, <a href="https://dnsimple.com/">DNSimple</a> or <a href="http://aws.amazon.com/route53/">Amazon Route 53</a>. They both have special <code>ALIAS</code> records (<a href="http://support.dnsimple.com/articles/alias-record">DNSimple ALIAS</a>, <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/HowToAliasRRS.html">Route 53 ALIAS</a>) that allow you to point a root domain (&quot;example.com&quot;) to another domain, much like a <code>CNAME</code>.</p>
+
+<p>In the case of DNSimple, we create two records:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ALIAS example.com example.com.s3-website-us-east-1.amazonaws.com
+CNAME www.example.com www.example.com.s3-website-us-east-1.amazonaws.com
+</code></pre></div>
+<p>To use a separate DNS provider, you need to configure your registrar (mine is <a href="https://www.gandi.net/">Gandi</a>) to point to its DNS servers.</p>
+
+<p>I won&#39;t dive right now into how to configure a CDN like <a href="http://aws.amazon.com/cloudfront/">CloudFront</a>. Different CDN, DNS, host combinations could be a whole other article. Feel free to read through the CloudFront documentation, it should be pretty straighforward to set up using <code>jekyll-s3</code> and Route 53.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Using Jekyll does require a bit of tinkering and setting up, but hopefully this walkthrough will help you get started faster.</p>
+
+<p>I like the fact that creating &quot;from scratch&quot; forces you to learn and understand what goes into making a fast and modern website. I also appreaciate the flexibility it gives you, since you can use plugins and other tools like Grunt to adapt it to what&#39;s specific about your project.</p>
+
+<p>Did you find this article helpful? Do you use Jekyll and have a different workflow you&#39;d like to share? Feel free to reach out!</p>
+
+          </div><!--end of article body-->
+        </div>
+      </div><!--end of row-->
+      
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+          <div class="author-details">
+            <div id="logo-author" class="logo-author" data-src="http://biojazzard.github.io/img/dot-a.svg" data-desc="DOT-A Alfredo Llanos">
+            </div>
+            <h5>Alfredo Llanos</h5>
+            <p>
+              Web Developer. Bilbao
+            </p>
+            <ul class="social-icons text-right">
+              <li>
+                <a href="https://twitter.com/biojazzard">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.facebook.com/alfredo.llanos">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://plus.google.com/+AlfredoLlanos/">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!--end of row-->
+      
+    </div><!--end of container--> 
+  </section>
+</div>
+
+  <div class="footer-container">
+
+  <footer class="details">
+    <div class="container">
+
+      <div class="row ui-sortable">
+        <div class="col-sm-12">
+          <span class="sub">
+            © 2014
+            <a href="#">Alfredo Llanos</a>
+            &nbsp;- Todos los derechos reservados.
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+    
+    <script src="../build/build.min.js"></script>
+    
+  
+
+</body>
+</html>

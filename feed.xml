@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alfredo Llanos</title>
+    <description>Web development. HTML5, Javascript, CSS3, PHP.</description>
+    <link>http://biojazzard.github.io</link>
+    <atom:link href="http://biojazzard.github.io/feed/index.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Problemas con uncss</title>
+        <description>&lt;p&gt;&lt;strong&gt;uncss&lt;/strong&gt; &lt;code&gt;npm install -g uncss&lt;/code&gt; promete mucho pero no lo puedo usar por ahora en producción.&lt;/p&gt;
+
+&lt;h1&gt;Resumen&lt;/h1&gt;
+
+&lt;p&gt;No usable en producción salvo en casos concretos.&lt;/p&gt;
+
+&lt;h2&gt;1. Principalmente por este asunto:&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/giakki/uncss/issues/74&quot;&gt;Github:UnCSS ignoring complex selectors #74&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Escenario&lt;/h3&gt;
+
+&lt;p&gt;El documento original contiene:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;menu&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cuando alguien hace lo necesario, el menu se abre: añadiéndole la clase &amp;quot;open&amp;quot;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-coffeescript&quot; data-lang=&quot;coffeescript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;menu-open-btn&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;()-&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;.menu&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addClass&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;open&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Obtenemos:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;menu open&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;El css sería:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.menu&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Fail:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Houston&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;We&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ve&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Had&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Problem&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;UNCSS&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;No&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;lo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pilla&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.menu.open&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Este escenario es representativo de muchos otros. Lo que hace &lt;strong&gt;uncss&lt;/strong&gt; poco usable.&lt;/p&gt;
+
+&lt;h3&gt;Solución&lt;/h3&gt;
+
+&lt;p&gt;Si no excedes el uso de selectores complejos, puedes pasar a &lt;strong&gt;uncss&lt;/strong&gt; el parametro &lt;code&gt;ignore&lt;/code&gt; con los selectores que conozcas que quieras preservar:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-coffeescript&quot; data-lang=&quot;coffeescript&quot;&gt;&lt;span class=&quot;nv&quot;&gt;uncss:&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;dist:&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;options:&lt;/span&gt;
+      &lt;span class=&quot;nv&quot;&gt;ignore: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;#39;.menu.open&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;files:&lt;/span&gt;
+      &lt;span class=&quot;s&quot;&gt;&amp;#39;./_site/build/style.un.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;./_site/{,*/}*.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;./_site/theme/{,*/}*.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. Manejo de errores, es fácil que acabes así:&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/addyosmani/grunt-uncss/issues/34&quot;&gt;Fatal error: missing &amp;#39;{&amp;#39; near line ...&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;El manejo de errores no es más fino de la escena, y peta. Si usas &lt;strong&gt;grunt&lt;/strong&gt;, te petará el proceso.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 17 Nov 2014 00:00:00 +0100</pubDate>
+        <link>http://biojazzard.github.io/problemas-con-uncss/</link>
+        <guid isPermaLink="true">http://biojazzard.github.io/problemas-con-uncss/</guid>
+      </item>
+    
+      <item>
+        <title>Deploy de un sitio web con git</title>
+        <description>&lt;p&gt;&lt;em&gt;Si usas git para controlar un proyecto, muchas veces querrás que sólo lo alojado en &lt;code&gt;dist&lt;/code&gt; o &lt;code&gt;_site&lt;/code&gt; sea lo publicado en la web.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Este es el caso si usas &lt;a href=&quot;http://yeoman.io/&quot;&gt;Yeoman&lt;/a&gt; o &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, o cualquier otro sistema en el que publiques sobre una carpeta: &lt;code&gt;dist&lt;/code&gt;, &lt;code&gt;_site&lt;/code&gt; o como la llames.&lt;/p&gt;
+
+&lt;h1&gt;Necesario&lt;/h1&gt;
+
+&lt;p&gt;Usar &lt;code&gt;git subtree&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Suponemos&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Contenido a publicar: &lt;code&gt;_site&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.
+├── _includes/
+|   ├── footer.html
+|   ├── header.html
+|   └── posts.html
+├── _plugins/
+|   ├── asset_url.rb
+|   └── image_tag.rb
+├── _layouts/
+|   ├── default.html
+|   ├── page.html
+|   └── post.html
+├── _posts/
+|   ├── 2013-02-11-.md
+|   └── 2013-01-31-hello-world.md
+├── _site/ --&amp;gt; A PUBLICAR EN LA RAIZ DE LA WEB
+├── _config.yml
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Branch de trabajo: &lt;code&gt;master&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Branch a publicar: &lt;code&gt;dist&lt;/code&gt; (Se creará al vuelo)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Eliminar el directorio &lt;code&gt;_site&lt;/code&gt; del archivo &lt;code&gt;.gitignore&lt;/code&gt; file. Yeoman lo ignora por defecto. OjO.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Añade el directorio a git y hacemos &lt;code&gt;commit&lt;/code&gt; a todo.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git add _site &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Initial _site subtree commit&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;Empujamos &lt;code&gt;_site&lt;/code&gt; al &lt;strong&gt;origen&lt;/strong&gt; sobre el branch &lt;strong&gt;dist&lt;/strong&gt; &lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git subtree push --prefix _site origin dist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Acualizaciones&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git commit&lt;/code&gt; a todo el proyecto y&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git subtree push --prefix _site origin dist&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ya está si usas los hooks, tu sitio se actualizará automáticamente.&lt;/p&gt;
+
+&lt;h2&gt;Para leer:&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://yeoman.io/learning/deployment.html&quot;&gt;Deploying a Yeoman Site&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Nov 2014 00:00:00 +0100</pubDate>
+        <link>http://biojazzard.github.io/Deploy-de-un-sitio-web-con-git/</link>
+        <guid isPermaLink="true">http://biojazzard.github.io/Deploy-de-un-sitio-web-con-git/</guid>
+      </item>
+    
+      <item>
+        <title>Automatic Deployments with BitBucket</title>
+        <description>&lt;p&gt;&lt;em&gt;Unas notas de como automatizar el deploy de sitios web con git y bitbucket hooks.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Este artículo está inspirado en este otro &lt;a href=&quot;http://brandonsummers.name/blog/2012/02/10/using-bitbucket-for-automated-deployments/&quot;&gt;artículo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Objetivo&lt;/h1&gt;
+
+&lt;p&gt;Desarollamos un sitio web. Al hacer commit al proyecto web, es publicado automáticamente.&lt;/p&gt;
+
+&lt;h1&gt;Necesario tener o saber&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Local: Desarrollar un proyecto usando GIT.
+
+&lt;ul&gt;
+&lt;li&gt;Software:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://git-scm.com/&quot;&gt;GIT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.openssh.com/&quot;&gt;SSH&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Servidor: Donde se publica.
+
+&lt;ul&gt;
+&lt;li&gt;Software:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.apache.org/&quot;&gt;Apache&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://php.net/&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://git-scm.com/&quot;&gt;GIT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.openssh.com/&quot;&gt;SSH&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cuenta con acceso SSH en el servidor.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Repositorio:
+
+&lt;ul&gt;
+&lt;li&gt;Cuenta en:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bitbucket.org/&quot;&gt;bitbucket&lt;/a&gt; ó&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/&quot;&gt;github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Flujo de Trabajo&lt;/h2&gt;
+
+&lt;p&gt;Básicamente lo que queremos es que cuando hagamos en nuestra máquina local de desarrollo:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git commit&lt;/code&gt; (consolidar el proyecto) + &lt;code&gt;git push&lt;/code&gt; (subir cambios al repositorio)&lt;/p&gt;
+
+&lt;p&gt;El proyecto se actualice automáticamente en &lt;a href=&quot;http://domain.com&quot;&gt;http://domain.com&lt;/a&gt; &lt;/p&gt;
+
+&lt;h2&gt;Ahorro&lt;/h2&gt;
+
+&lt;p&gt;Repetir una secuencia de tareas repetidamente.&lt;/p&gt;
+
+&lt;p&gt;Queremos que nuestro servidor de destino haga algo automaticamente, y evitarnos hacer a mano cosas como:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git pull&lt;/code&gt; (traer los cambiso del repositorio === actualizar el proyecto en el web)&lt;/p&gt;
+
+&lt;p&gt;El problema es que para ejecutar ese simple comando, haya que hacer antes:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Entrar al servidor&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh user:domain.com
+&lt;span class=&quot;c&quot;&gt;# Ir al directorio del proyecto&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/machine/domains/domain.com/html
+&lt;span class=&quot;c&quot;&gt;# Ver cómo estamos&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git status
+&lt;span class=&quot;c&quot;&gt;# Descartar cambios locales&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git reset --hard HEAD
+&lt;span class=&quot;c&quot;&gt;# Actualizar web&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cada vez que queramos mostrar cambios.... &amp;gt;_&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;Teniendo en cuenta, que requiere introducir tanto el &lt;em&gt;password&lt;/em&gt; del servidor, como el &lt;em&gt;passphrase&lt;/em&gt; de tu clave.&lt;/p&gt;
+
+&lt;h1&gt;Procedimiento&lt;/h1&gt;
+
+&lt;h2&gt;Necesitamos:&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Usar &lt;a href=&quot;https://bitbucket.org/&quot;&gt;bitbucket&lt;/a&gt; para alojar nuestro repositorio. &lt;/li&gt;
+&lt;li&gt;Utilizar los &lt;a href=&quot;https://confluence.atlassian.com/display/BITBUCKET/POST+hook+management&quot;&gt;hooks&lt;/a&gt; de &lt;a href=&quot;https://bitbucket.org/&quot;&gt;bitbucket&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Configurar y añadir al proyecto, el archivo &lt;a href=&quot;#deploy&quot;&gt;deploy.php&lt;/a&gt;. Tambien disponible como &lt;a href=&quot;https://gist.github.com/c0123f6797aaeb935ccd.git&quot;&gt;gist:deploy.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Crear las claves, añadirlas a bitbucket y establecer los permisos necesarios en el servidor de destino.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Aloja tu proyecto en &lt;a href=&quot;https://bitbucket.org/&quot;&gt;bitbucket&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Se escapa del alcance del post, sigue las instrucciones en la propia web, es muy sencillo.&lt;/p&gt;
+
+&lt;h3&gt;Creación de un hook para tu proyecto en bitbucket:&lt;/h3&gt;
+
+&lt;p&gt;La configuración de todo esto, en bitbucket: &lt;code&gt;Tu Proyecto &amp;gt; Settings &amp;gt; Hooks&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# La URL de configuración de los hooks es algo así:
+# user.name: tu nombre de usuario de [bitbucket](https://bitbucket.org/)
+# project.name: tu proyecto.
+https://bitbucket.org/user.name/project.name/admin/hooks
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Suponiendo que publicas la web en &lt;a href=&quot;http://domain.com/&quot;&gt;domain.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# URL para tu hook;
+http://domain.com/deploy.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Archivo &lt;code&gt;deploy.php&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Lo deberás añadir a la raíz de tu proyecto, y no olvides de &lt;code&gt;git add deploy.php&lt;/code&gt; para que no se quede fuera.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&quot;deploy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Originally seen here: &amp;#39;Using Bitbucket for Automated Deployments&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# http://brandonsummers.name/blog/2012/02/10/using-bitbucket-for-automated-deployments/&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Is it safe servers time ?&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#date_default_timezone_set(&amp;#39;America/Los_Angeles&amp;#39;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Deploy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * A callback function to call after the deploy has finished.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var callback&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$post_deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * The name of the file that will be used for logging deployments. Set to * FALSE to disable logging.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var string &lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_log&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;deployments.log&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * The timestamp format used for logging.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @link http://www.php.net/manual/en/function.date.php&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var string&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_date_format&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Y-m-d H:i:sP&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * The name of the branch to pull from.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var string&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_branch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * The name of the remote to pull from.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var string&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_remote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * The directory where your website and git repository are located, can be * a relative or absolute path&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @var string&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;/** * Sets up defaults.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @param string $directory Directory where your website is located&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @param array $data Information about the deployment&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Determine the directory path&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_directory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;realpath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DIRECTORY_SEPARATOR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;nv&quot;&gt;$available_options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;log&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;date_format&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;branch&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;remote&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$options&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$option&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;in_array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$available_options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$option&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Attempting deployment...&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * Writes a message to the log file.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    *&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @param string $message The message to write&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    * @param string $type The type of log message (e.g. INFO, DEBUG, ERROR, etc.)&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;    */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;INFO&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// Set the name of the log file&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file_exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+                &lt;span class=&quot;c1&quot;&gt;// Create the log file&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;file_put_contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+                &lt;span class=&quot;c1&quot;&gt;// Allow anyone to write to log files&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mo&quot;&gt;0666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+                &lt;span class=&quot;c1&quot;&gt;// Write the message into the log file&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// Format: time --- type: message&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;file_put_contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_date_format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; --- &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;: &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FILE_APPEND&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;        * Executes the necessary commands to deploy the website.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;        */&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// Make sure we&amp;#39;re in the right directory&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;//exec(&amp;#39;cd &amp;#39;.$this-&amp;gt;_directory, $output);&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;chdir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_directory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Changing working directory... &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;implode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// Discard any changes to tracked files since our last deploy&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;git reset --hard HEAD&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Reseting repository... &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;implode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Update the local repository&lt;/span&gt;
+
+                &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;git pull &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_remote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_branch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Pulling in changes... &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;implode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+                &lt;span class=&quot;c1&quot;&gt;// Secure the .git directory&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;chmod -R og-rx .git&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Securing .git directory... &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;is_callable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post_deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;nb&quot;&gt;call_user_func&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post_deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Deployment successful.&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ERROR&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// This is just an example&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/home/machine/domains/domain.com/html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post_deploy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// hit the wp-admin page to update any db changes&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//exec(&amp;#39;curl http://www.foobar.com/wp-admin/upgrade.php?step=upgrade_db&amp;#39;);&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Biojazzard´s GIT PULL ... &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Doit&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Configuración de &lt;code&gt;deploy.php&lt;/code&gt;en tu proyecto web.&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Coloca &lt;a href=&quot;#deploy&quot;&gt;deploy.php&lt;/a&gt; en la raíz de tu proyecto web, recuerda que has configurado el hook para que llame a:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# Hook URL
+http://domain.com/deploy.php
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Configura &lt;a href=&quot;#deploy&quot;&gt;deploy.php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Configura tu branch del proyecto.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_branch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Configura el origen del repositorio.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_remote&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;origin&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y lo más importante: la ruta al proyecto: depende de tu servidor y suele ser del tipo:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$deploy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Deploy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/home/machine/domains/domain.com/html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Configuración SSH, Deployment Keys y Permisos&lt;/h1&gt;
+
+&lt;p&gt;En estos momentos, ya podrás hacer un &lt;code&gt;git commit&lt;/code&gt; y &lt;code&gt;git push&lt;/code&gt;: `&lt;code&gt;deploy.php&lt;/code&gt; será atacado, pero no se te actualizará el proyecto. &amp;gt;_&amp;lt;&lt;/p&gt;
+
+&lt;p&gt;Queda:&lt;/p&gt;
+
+&lt;h2&gt;SSH&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Si tu par de keys, tiene una &lt;em&gt;passphrase&lt;/em&gt;, no te servirá. Para ello:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Conectate a tu servidor vía SSH y genera un par, no establezcas ninguna &lt;em&gt;passphrase&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen -t rsa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Copia el contenido de la clave que se te muestra al abrir la clave pública:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Deployment Keys en bitbucket&lt;/h2&gt;
+
+&lt;p&gt;Y pegalo en el contenido de la &lt;em&gt;key&lt;/em&gt; que generes para el proyecto: para ello vete a bitbucket, abre tu proyecto, vete a &lt;code&gt;Tu proyecto &amp;gt; Settings &amp;gt; Deployment Keys&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# La URL es del tipo:
+https://bitbucket.org/biojazzard/demo.psicotecnico/admin/deploy-keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Permisos&lt;/h2&gt;
+
+&lt;p&gt;Lo único que falta, es hacer que tu servidor &lt;em&gt;Apache&lt;/em&gt;, tenga el permiso necesario para ver tu clave pública, es necesario entonces que asignes los permisos necesarios a la carpeta `&lt;code&gt;.ssh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;chown -R www-data:www-data .ssh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En mi caso el usuario apache es &lt;code&gt;www-data&lt;/code&gt; en tu caso puede ser diferente:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;chown -R apache:apache .ssh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Consejos&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mira el log &lt;code&gt;deployment.log&lt;/code&gt; con frecuencia: te puede dar pistas de o que esté pasando.&lt;/li&gt;
+&lt;li&gt;En estos casos los asuntos suelen venir siempre de permisos &lt;em&gt;chungos&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Recursos&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://gist.github.com/biojazzard/c0123f6797aaeb935ccd&quot;&gt;deploy.php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Más información&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://brandonsummers.name/blog/2012/02/10/using-bitbucket-for-automated-deployments/&quot;&gt;bitbucket-for-automated-deployments&lt;/a&gt;
+https://confluence.atlassian.com/display/BITBUCKET/POST+hook+management&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://confluence.atlassian.com/display/BITBUCKET/Add+an+SSH+key+to+an+account#AddanSSHkeytoanaccount-Testingwhichkeyyouaresending&quot;&gt;Add an SSH key to an account&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678&quot;&gt;Set up SSH for Git and Mercurial on Mac OSX/Linux&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://confluence.atlassian.com/pages/viewpage.action?pageId=271943168#ConfiguremultipleSSHidentitiesforGitBash,MacOSX,&amp;amp;Linux-LoadeachkeyintotheappropriateBitbucketaccount&quot;&gt;Configure multiple SSH identities for GitBash, Mac OSX, &amp;amp; Linux&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 15 Nov 2014 00:00:00 +0100</pubDate>
+        <link>http://biojazzard.github.io/Automatic-Deployments-with-BitBucket/</link>
+        <guid isPermaLink="true">http://biojazzard.github.io/Automatic-Deployments-with-BitBucket/</guid>
+      </item>
+    
+      <item>
+        <title>Website con Jekyll+Bower+Grunt+Browserify</title>
+        <description>&lt;p&gt;&lt;em&gt;This is a full walkthrough of how I created a static website with Jekyll, keeping it fast and mobile-friendly.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is a static site generator: it transforms plain text files (in &lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt; for content, &lt;a href=&quot;http://wiki.shopify.com/Liquid&quot;&gt;Liquid&lt;/a&gt; for templates) into an HTML, CSS, and JavaScript website ready for deployment.&lt;/p&gt;
+
+&lt;p&gt;There are other options out there to create a website or blog, like the popular &lt;a href=&quot;http://wordpress.org/&quot;&gt;Wordpress&lt;/a&gt;, or the more recent &lt;a href=&quot;http://www.squarespace.com/&quot;&gt;Squarespace&lt;/a&gt; and &lt;a href=&quot;http://tryghost.org/&quot;&gt;Ghost&lt;/a&gt;. These are &lt;em&gt;dynamic&lt;/em&gt;, which means your content is stored in a database and is filled in templates when a user visits the site. They also have an administration section, which allows you to log in and edit your content. That usually makes the website or blog easier to update, especially for less technical people.&lt;/p&gt;
+
+&lt;p&gt;But using a static site generator like Jekyll has a few advantages over these other solutions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The website is usually very &lt;strong&gt;fast&lt;/strong&gt;: Since it&amp;#39;s only static files, there are no round-trips to a database, and web servers have become really good at serving plain files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It&amp;#39;s also very &lt;strong&gt;scalable&lt;/strong&gt;: Even if you have a ton of traffic, it&amp;#39;s easier for a static web server to handle than, for instance, a PHP Wordpress application.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It&amp;#39;s very &lt;strong&gt;easy to deploy&lt;/strong&gt;: There are many static file web server options out there, you don&amp;#39;t need to hook up and configure a database, or install and maintain any application.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You really &lt;strong&gt;own your content&lt;/strong&gt;: It&amp;#39;s all plain text files, usually in Markdown, that you can safely keep in your Dropbox or GitHub repository.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It&amp;#39;s &lt;strong&gt;extensible&lt;/strong&gt;: Since a static site generator like Jekyll only focuses on turning plain text files into HTML, and provides you with a plugin interface, you can basically do anything: add third-party libraries like Disqus or Google Analytics, create your own logic to insert images into pages, etc.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Building a website &amp;quot;from scratch&amp;quot; using Jekyll might feel a little complicated at first, as there are a lot of moving parts, things to configure, etc. In this post, I&amp;#39;d like to walk you through how I went about it, and hopefully that will help you get started more quickly and serve as a checklist of the things you need to think about for your website. Keep in mind that this is just &lt;em&gt;one&lt;/em&gt; way of doing things. You are more than welcome to adapt this workflow to your liking!&lt;/p&gt;
+
+&lt;p&gt;This is also a fairly long read, since I wanted to include the end-to-end process from installing the tools to deploying the site. The table of contents below will help you jump to different sections.&lt;/p&gt;
+
+&lt;p&gt;If you want, you can follow along with this &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com&quot;&gt;source code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Table of contents&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#installing-jekyll&quot;&gt;Installing Jekyll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#installing-grunt&quot;&gt;Installing Grunt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#workflow&quot;&gt;Workflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#css&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#javascript&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#images&quot;&gt;Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#code-blocks&quot;&gt;Code blocks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#comments&quot;&gt;Comments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#seo&quot;&gt;SEO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#analytics&quot;&gt;Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#deployment&quot;&gt;Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;installing-jekyll&quot;&gt;Installing Jekyll&lt;/h2&gt;
+
+&lt;p&gt;We will use &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; (Ruby) to generate the HTML files, the &lt;a href=&quot;http://gruntjs.com/&quot;&gt;Grunt&lt;/a&gt; build tool (Node.js) to compile and minify CSS and JavaScript files, and &lt;a href=&quot;http://pygments.org/&quot;&gt;Pygments&lt;/a&gt; (Python) for code syntax highlighting in our posts.&lt;/p&gt;
+
+&lt;p&gt;This means you will need to have installed:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ruby-lang.org/&quot;&gt;Ruby&lt;/a&gt; with &lt;a href=&quot;http://rubygems.org/&quot;&gt;RubyGems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; with &lt;a href=&quot;https://npmjs.org/&quot;&gt;NPM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.python.org/&quot;&gt;Python&lt;/a&gt; with &lt;a href=&quot;http://www.pip-installer.org/&quot;&gt;pip&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you don&amp;#39;t have all of these installed and are using a Mac, you can check out my &lt;a href=&quot;https://github.com/nicolashery/mac-dev-setup&quot;&gt;Mac Dev Setup&lt;/a&gt; guide for help.&lt;/p&gt;
+
+&lt;p&gt;Install Jekyll with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install jekyll
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Jekyll has great &lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;documentation&lt;/a&gt; to help you learn how to use it.&lt;/p&gt;
+
+&lt;p&gt;A basic directory structure looks something like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.
+├── _includes/
+|   ├── footer.html
+|   ├── header.html
+|   └── posts.html
+├── _plugins/
+|   ├── asset_url.rb
+|   └── image_tag.rb
+├── _layouts/
+|   ├── default.html
+|   ├── page.html
+|   └── post.html
+├── _posts/
+|   ├── 2013-02-11-pictures-of-cats.md
+|   └── 2013-01-31-hello-world.md
+├── _site/
+├── _config.yml
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The static website is generated in the &lt;code&gt;_site&lt;/code&gt; folder. Any other file or directory than the ones listed above (like CSS and JavaScript files) will be copied over into the &lt;code&gt;_site&lt;/code&gt; directory, except if you explicitly exclude them in &lt;code&gt;_config.yml&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We use &lt;a href=&quot;http://git-scm.com/&quot;&gt;Git&lt;/a&gt; for version control, so let&amp;#39;s immediately add &lt;code&gt;_site&lt;/code&gt; to our &lt;code&gt;.gitignore&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;h2 id=&quot;installing-grunt&quot;&gt;Installing Grunt&lt;/h2&gt;
+
+&lt;p&gt;Jekyll processes our layout and content text files into HTML. We will use &lt;a href=&quot;http://gruntjs.com/&quot;&gt;Grunt&lt;/a&gt; to process our CSS and JavaScript files.&lt;/p&gt;
+
+&lt;p&gt;Install the Grunt command line tool with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install -g grunt-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let&amp;#39;s create directories for our source files, and add them to the &lt;code&gt;exclude&lt;/code&gt; list in &lt;code&gt;_config.yml&lt;/code&gt; so they are not copied to the site:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;...
+├── css/
+└── js/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you use preprocessors, like &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt;, &lt;a href=&quot;http://lesscss.org/&quot;&gt;LESS&lt;/a&gt;, or &lt;a href=&quot;http://coffeescript.org/&quot;&gt;CoffeeScript&lt;/a&gt;, you can add corresponding &lt;code&gt;sass/&lt;/code&gt;, &lt;code&gt;less/&lt;/code&gt;, or &lt;code&gt;coffee/&lt;/code&gt; directories.&lt;/p&gt;
+
+&lt;p&gt;We also create directories for our concatenated (&lt;code&gt;debug/&lt;/code&gt;) and minified (&lt;code&gt;build/&lt;/code&gt;) files, which will be copied to the site, and add them to &lt;code&gt;.gitignore&lt;/code&gt; so they are not tracked in version control:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;...
+├── debug/
+└── build/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, we create an &lt;code&gt;assets/&lt;/code&gt; directory for larger files such as images, also excluded from version control in &lt;code&gt;.gitignore&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;...
+└── assets/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A word of explanation: we will create our stylesheets and scripts in their source directories, using as many files as we like to keep the code maintainable. We then combine those files into one CSS file &lt;code&gt;style.css&lt;/code&gt; and one JavaScript file &lt;code&gt;main.js&lt;/code&gt; in the &lt;code&gt;debug/&lt;/code&gt; directory, which keeps the number of HTTP requests to a minimum for best performance. To do so, we can use the following Grunt &lt;a href=&quot;http://gruntjs.com/plugins&quot;&gt;plugins&lt;/a&gt;, depending on which tools you use (I like &lt;a href=&quot;http://compass-style.org/&quot;&gt;Compass&lt;/a&gt; for CSS and &lt;a href=&quot;http://browserify.org/&quot;&gt;Browserify&lt;/a&gt; for JavaScript):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-concat&quot;&gt;grunt-contrib-concat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-sass&quot;&gt;grunt-contrib-sass&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-compass&quot;&gt;grunt-contrib-compass&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-less&quot;&gt;grunt-contrib-less&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-browserify2&quot;&gt;grunt-browserify2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-coffee&quot;&gt;grunt-contrib-coffee&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For deployment, we will also minify the files into &lt;code&gt;style.min.css&lt;/code&gt; and &lt;code&gt;main.min.js&lt;/code&gt; in the &lt;code&gt;build/&lt;/code&gt; directory, using:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-cssmin&quot;&gt;grunt-contrib-cssmin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://npmjs.org/package/grunt-contrib-uglify&quot;&gt;grunt-contrib-uglify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All these tasks are defined in the &lt;code&gt;Gruntfile.js&lt;/code&gt; of your project. You can check out Grunt&amp;#39;s &lt;a href=&quot;http://gruntjs.com/getting-started&quot;&gt;documentation&lt;/a&gt; and my example &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com/blob/master/Gruntfile.js&quot;&gt;Gruntfile.js&lt;/a&gt; for help setting it up.&lt;/p&gt;
+
+&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;/h2&gt;
+
+&lt;p&gt;I set up some Grunt tasks to help me automate my workflow. During development, when I&amp;#39;m modifying my site layout, writing content, changing CSS, etc., I open up a first terminal and run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt debug
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tasks watches for changes in CSS and JS files (and/or Sass, LESS, CoffeeScript), compiles and concatenates source files in the &lt;code&gt;debug/&lt;/code&gt; directory. In a second terminal I run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This task is basically an alias for &lt;code&gt;jekyll serve --watch&lt;/code&gt;, which runs the development server on &lt;code&gt;http://localhost:4000/&lt;/code&gt; and also watches for changes in Liquid layout or Markdown content files and rebuilds the site.&lt;/p&gt;
+
+&lt;p&gt;Before deployment, I run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This compiles, concatenates, and minifies styles and scripts, as well as re-generates the whole Jekyll site, and uses the environment variable &lt;code&gt;JEKYLL_ENV&lt;/code&gt; by setting it to &lt;code&gt;&amp;quot;production&amp;quot;&lt;/code&gt; to tell my Jekyll templates to point to the minified files in the &lt;code&gt;build/&lt;/code&gt; directory instead of &lt;code&gt;debug/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We will see later, but to deploy the website and publish changes, I use the command:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll-s3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The Grunt tasks described above use a combination of the plugins mentioned earlier. I invite you to check out my &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com/blob/master/Gruntfile.js&quot;&gt;Gruntfile.js&lt;/a&gt; and use it as inspiration for your own workflow.&lt;/p&gt;
+
+&lt;h2 id=&quot;css&quot;&gt;CSS&lt;/h2&gt;
+
+&lt;p&gt;Writing plain CSS has its limits, and there are preprocessors like &lt;a href=&quot;http://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; (Ruby) and &lt;a href=&quot;http://lesscss.org/&quot;&gt;LESS&lt;/a&gt; (Node.js) that help you overcome them. There are also frameworks like &lt;a href=&quot;http://twitter.github.io/bootstrap/&quot;&gt;Bootstrap&lt;/a&gt; (LESS) and &lt;a href=&quot;http://foundation.zurb.com/&quot;&gt;Foundation&lt;/a&gt; (Sass) that give you a head start with styles for elements like grids, buttons, typography, etc.&lt;/p&gt;
+
+&lt;p&gt;Personally, I use Sass with &lt;a href=&quot;http://compass-style.org/&quot;&gt;Compass&lt;/a&gt;. I also like &lt;a href=&quot;http://inuitcss.com/&quot;&gt;Inuit.css&lt;/a&gt; as a lightweight, extensible framework. I will explain how to set those up, but you can use whichever tool you prefer.&lt;/p&gt;
+
+&lt;p&gt;To install Compass and its Inuit framework plugin:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install compass compass-inuit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I then configure the Grunt plugin &lt;a href=&quot;https://npmjs.org/package/grunt-contrib-compass&quot;&gt;grunt-contrib-compass&lt;/a&gt; in my &lt;code&gt;Gruntfile.js&lt;/code&gt; and add it to my &lt;code&gt;grunt debug&lt;/code&gt; and &lt;code&gt;grunt build&lt;/code&gt; tasks.&lt;/p&gt;
+
+&lt;p&gt;Using preprocessors helps you keep your CSS maintainable and modular. If interested, you can dive into the work around &lt;a href=&quot;http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/&quot;&gt;Object-Oriented CSS (OOCSS)&lt;/a&gt; or &lt;a href=&quot;http://smacss.com/&quot;&gt;SMACS&lt;/a&gt;. To start simple, I find it a good practice to separate styles specific to certain parts your website in different files, and prefix the CSS rules with those &amp;quot;module&amp;quot; names. For example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sass/
+├── ui/
+|   ├── _footer.scss
+|   ├── _header.scss
+|   ├── _page.scss
+|   └── _scaffolding.scss
+├── _config.scss
+└── main.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sass&quot; data-lang=&quot;sass&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// _header.scss&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;.header--nav&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@extend&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.nav&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;@extend&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.nav--banner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;margin-bottom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now is a good time to say a few words on building a mobile-friendly website. It has a become best practice to use &lt;a href=&quot;http://en.wikipedia.org/wiki/Responsive_web_design&quot;&gt;Responsive Web Design&lt;/a&gt;, i.e. building a site that adapts nicely to different device screen sizes. To do so, add the following in your &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; HTML tag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;viewport&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can then use CSS3 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries&quot;&gt;media queries&lt;/a&gt; to define rules for certain screen sizes. I like the &lt;a href=&quot;http://www.html5rocks.com/en/mobile/responsivedesign/&quot;&gt;mobile-first&lt;/a&gt; approach, so I often design my site for the smallest screen size first, then add rules to complement or override the styles as the screen gets bigger. For example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;max-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;700px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;12px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding-bottom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;only&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;screen&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;481px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;24px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;24px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;24px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, include the link to the concatenated stylesheet in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; tag of &lt;code&gt;_layouts/default.html&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{% if site.env == &amp;#39;production&amp;#39; %}
+  &amp;lt;&amp;amp;gt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/build/style.min.css&amp;quot;&amp;amp;lt;&amp;gt;
+{% else %}
+  &amp;lt;&amp;amp;gt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/debug/style.css&amp;quot;&amp;lt;&amp;amp;lt;
+{% endif %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;javascript&quot;&gt;JavaScript&lt;/h2&gt;
+
+&lt;p&gt;I use the &lt;a href=&quot;http://bower.io/&quot;&gt;Bower&lt;/a&gt; package manager to install front-end JS libraries, like &lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt;. It has a pretty extensive registry of these front-end &lt;a href=&quot;http://sindresorhus.com/bower-components/&quot;&gt;components&lt;/a&gt;. Some front-end libraries can also be found on &lt;a href=&quot;https://npmjs.org/&quot;&gt;NPM&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Bower will install libraries in the &lt;code&gt;components/&lt;/code&gt; directory. For example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bower install jquery fastclick
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I then use &lt;a href=&quot;http://browserify.org/&quot;&gt;Browserify&lt;/a&gt; and the Grunt plugin &lt;a href=&quot;https://npmjs.org/package/grunt-browserify2&quot;&gt;grunt-browserify2&lt;/a&gt; to combine these different libraries into one single JS file. My main JS file will look something like:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// js/main.js&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;jquery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FastClick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;fastclick&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// On DOM ready&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// Eliminates the 300ms delay between a physical tap and the firing of a&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// click event on mobile browsers&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FastClick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To be able to write &lt;code&gt;require(&amp;#39;jquery&amp;#39;)&lt;/code&gt;, you need to use &lt;a href=&quot;https://github.com/thlorenz/browserify-shim&quot;&gt;browserify-shim&lt;/a&gt; in your &lt;code&gt;Gruntfile.js&lt;/code&gt; and provide the path to each component.&lt;/p&gt;
+
+&lt;p&gt;In your &lt;code&gt;default.html&lt;/code&gt; layout, link to the concatenated JS file just before the closing &lt;code&gt;&amp;lt;/body&amp;gt;&lt;/code&gt; tag (for best performance):&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ... --&amp;gt;&lt;/span&gt;
+  {% if site.env == &amp;#39;production&amp;#39; %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/build/app.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  {% else %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/debug/app.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  {% endif %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
+
+&lt;p&gt;Regarding website performance, images are a tricky thing. We took the time to concatenate and minify our CSS and JS files, but a single image can weight more kilobytes than both files combined.&lt;/p&gt;
+
+&lt;p&gt;As &lt;a href=&quot;http://daverupert.com/about.html&quot;&gt;Dave Rupert&lt;/a&gt;&amp;#39;s article &lt;a href=&quot;http://daverupert.com/2013/06/ughck-images/&quot;&gt;&amp;quot;Ughck. Images.&amp;quot;&lt;/a&gt; shows, the solution to &amp;quot;Responsive Images&amp;quot; isn&amp;#39;t quite here yet.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, I needed something relatively simple that would allow me to include images on a website in a way that keeps it loading fast. I focused on two things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Lazy load&lt;/strong&gt; images only once the user scrolls down to them, thanks to the &lt;a href=&quot;https://github.com/sebarmeli/JAIL.git&quot;&gt;JAIL&lt;/a&gt; jQuery plugin&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Responsive images&lt;/strong&gt; that load a different version depending on the screen size and resolution, thanks to a &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com/blob/master/js/lib/picturefill.js&quot;&gt;modified version&lt;/a&gt; of the &lt;a href=&quot;https://github.com/scottjehl/picturefill&quot;&gt;picturefill&lt;/a&gt; library (small tweak to make it compatible with JAIL)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After installing and setting up the JavaScript libraries, I create a &lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;Jekyll plugin&lt;/a&gt; called &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com/blob/master/_plugins/image_tag.rb&quot;&gt;image_tag.rb&lt;/a&gt;, that allows me to easily insert images in my Markdown files with a custom Liquid tag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{% image my-image.png &amp;quot;Image alt text&amp;quot; &amp;quot;Optional image caption&amp;quot; %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this in place, pages of the website should feel faster as images aren&amp;#39;t loaded until they become visible in the browser viewport.&lt;/p&gt;
+
+&lt;p&gt;I chose this solution because it is simple, and my website doesn&amp;#39;t use images much, but there are other options out there. For instance, &lt;a href=&quot;http://paulstamatiou.com/about&quot;&gt;Paul Stamatiou&lt;/a&gt;, who also does photograpy, offers a more sophisticated solution in his article &lt;a href=&quot;http://paulstamatiou.com/responsive-retina-blog-development-part-2&quot;&gt;&amp;quot;Developing a responsive, Retina-friendly site&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;code-blocks&quot;&gt;Code blocks&lt;/h2&gt;
+
+&lt;p&gt;With a blog on programming, I&amp;#39;m going to be using a lot of code examples. It&amp;#39;s important that they look good, both on desktop and mobile.&lt;/p&gt;
+
+&lt;p&gt;For syntax highlighting, Jekyll has a nice integration with &lt;a href=&quot;&quot;&gt;Pygments&lt;/a&gt;. To install, run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pip install pygments
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And add to your &lt;code&gt;_config.yml&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;pygments&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I like using &lt;strong&gt;fenced code blocks&lt;/strong&gt;, as found in &lt;a href=&quot;https://help.github.com/articles/github-flavored-markdown&quot;&gt;GitHub-Flavored Markdown&lt;/a&gt;, instead of Liquid &lt;code&gt;highlight&lt;/code&gt; tags. To do so, I switched my Jekyll Markdown parser to &lt;a href=&quot;https://github.com/vmg/redcarpet&quot;&gt;redcarpet&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install redcarpet
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And add to the &lt;code&gt;_config.yml&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;markdown&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;redcarpet&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And now you can include code blocks with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;```javascript
+var msg = &amp;#39;Hello world!&amp;#39;;
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For me, this also has the benefit of making the Markdown files of my blog posts compatible with &lt;a href=&quot;http://markedapp.com/&quot;&gt;Marked&lt;/a&gt; (also check &amp;quot;Strip YAML Front Matter&amp;quot; in Marked&amp;#39;s preferences).&lt;/p&gt;
+
+&lt;p&gt;As I said, I find it important that the code blocks look good on a small mobile screen as well as the desktop. To achieve this, I first use the following CSS rule:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;white-space&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will wrap the code when a line is longer than the screen size, instead of displaying a horizontal scroll bar (I find horizontal scrolling awkward, but that might be just me). Wrapped code isn&amp;#39;t great though, and a little difficult to read. To limit this on small screens, diminish the font-size to make as much code as possible fit on one line, using media queries:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;/* Make more code fit on small screens */&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;14px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;@media&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;only&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;screen&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;min-width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;481px&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;/* Bigger font on bigger screens */&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;16px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, for the colors of the syntax highlighting, I like the &lt;a href=&quot;http://ethanschoonover.com/solarized&quot;&gt;Solarized&lt;/a&gt; theme. I put together &lt;a href=&quot;https://gist.github.com/nicolashery/5765395&quot;&gt;two CSS stylesheets&lt;/a&gt; to use with Pygments and Jekyll, the &amp;quot;Light&amp;quot; and &amp;quot;Dark&amp;quot; versions.&lt;/p&gt;
+
+&lt;p&gt;Here I realized the importance of &lt;strong&gt;testing a website on an actual mobile device&lt;/strong&gt; (versus just in a resized desktop browser). Indeed, the Solarized Dark theme was fine on the bright screen of my MacBook Air, but too dark and diffictult to read on my iPhone screen. That&amp;#39;s one of the reasons I opted for Solarized Light.&lt;/p&gt;
+
+&lt;h2 id=&quot;comments&quot;&gt;Comments&lt;/h2&gt;
+
+&lt;p&gt;Many blogs and websites use &lt;a href=&quot;http://disqus.com/&quot;&gt;Disqus&lt;/a&gt; to manage their comments. Setting it up with Jekyll is &lt;a href=&quot;http://help.disqus.com/customer/portal/articles/472138-jekyll-installation-instructions&quot;&gt;very easy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;First you need to &lt;a href=&quot;https://disqus.com/profile/signup/&quot;&gt;create a Disqus account&lt;/a&gt; if you don&amp;#39;t have one already, then &lt;a href=&quot;https://disqus.com/admin/signup/&quot;&gt;register your site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once that is done, paste the universal code Disqus gives you into a Jekll include, &lt;code&gt;_includes/disqus.html&lt;/code&gt;, and replace the shortname with a Liquid output:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;disqus_shortname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ site.disqus.shortname }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, in your &lt;code&gt;_config.yml&lt;/code&gt;, insert your Disqus shortname:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;disqus&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;shortname&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;nicolashery&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, anywhere on your site you want to add Disqus comments (for instance, in &lt;code&gt;_layouts/post.html&lt;/code&gt;), all you have to do is include &lt;code&gt;disqus.html&lt;/code&gt; with the Liquid tag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{% include disqus.html %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;seo&quot;&gt;SEO&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;ll be honest, I don&amp;#39;t know much about &lt;a href=&quot;http://en.wikipedia.org/wiki/Search_engine_optimization&quot;&gt;Search Engine Optimization&lt;/a&gt;. This might be a bit naive, but to me the best way to be on top of search results is to have great content, tell people about it, and if they like it they will link to your content, and that will bring more people and help your ranking.&lt;/p&gt;
+
+&lt;p&gt;I did learn however, mostly thanks to &lt;a href=&quot;https://segment.io/&quot;&gt;Segment.io&lt;/a&gt;&amp;#39;s article &lt;a href=&quot;https://segment.io/academy/the-quickest-wins-in-seo/&quot;&gt;&amp;quot;The Quickest Wins in SEO&amp;quot;&lt;/a&gt;, that there are a couple basic steps you should take.&lt;/p&gt;
+
+&lt;p&gt;First, it is good to include a short meta description in the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; tag of your page, as Google will display that under the link to your site in the search results:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;description&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Short description of my website that will appear in search results.&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, add a &lt;a href=&quot;http://www.robotstxt.org/&quot;&gt;robots.txt&lt;/a&gt; file in your root directory, which tells crawlers (but doesn&amp;#39;t force them to) which parts of the site they should index or not. Don&amp;#39;t worry about it too much, just use the simplest form of &lt;code&gt;robots.txt&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;User-agent: *
+Allow: /
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I&amp;#39;m not sure if this is really SEO-related, but it&amp;#39;s also good practice to include an &lt;code&gt;error.html&lt;/code&gt; or &lt;code&gt;404.html&lt;/code&gt; file in the root directory, that will be displayed for example if a user mistypes a link to your site. Usually that page displays a short &amp;quot;Not Found&amp;quot; message with a link to other parts of the site (example: &lt;a href=&quot;https://github.com/404&quot;&gt;GitHub 404&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Finally, include a &lt;a href=&quot;http://en.wikipedia.org/wiki/Site_map&quot;&gt;Sitemap&lt;/a&gt;, which is an XML file that helps crawlers find content to index on your site. With Jekyll, all you need to do is copy the &lt;a href=&quot;https://github.com/danielgroves/jekyll-plugins/blob/master/sitemap_generator.rb&quot;&gt;sitemap_generator.rb&lt;/a&gt; plugin to your &lt;code&gt;_plugins&lt;/code&gt; folder. Re-generate the site, and a &lt;code&gt;sitemap.xml&lt;/code&gt; file will appear in the &lt;code&gt;_site&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h2&gt;RSS feed&lt;/h2&gt;
+
+&lt;p&gt;An &lt;a href=&quot;http://en.wikipedia.org/wiki/RSS&quot;&gt;RSS&lt;/a&gt; feed is a good way for visitors to keep updated on new blog posts when they add it to their feed reader.&lt;/p&gt;
+
+&lt;p&gt;To generate the XML file for your RSS feed, just copy the &lt;a href=&quot;https://github.com/snaptortoise/jekyll-rss-feeds/blob/master/feed.xml&quot;&gt;feed.xml&lt;/a&gt; template to your project root directory, and add a link to &lt;code&gt;/feed.xml&lt;/code&gt; somewhere on your site.&lt;/p&gt;
+
+&lt;h2 id=&quot;analytics&quot;&gt;Analytics&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m going to explain how to set up &lt;a href=&quot;http://www.google.com/analytics/&quot;&gt;Google Analytics&lt;/a&gt; on the site, but you can adapt this to other analytics services like &lt;a href=&quot;https://mixpanel.com&quot;&gt;Mixpanel&lt;/a&gt;, &lt;a href=&quot;https://www.gosquared.com/&quot;&gt;GoSquared&lt;/a&gt;, etc. (for a nice list of different services out there, see the &lt;a href=&quot;https://segment.io/docs/integrations&quot;&gt;Segment.io documentation&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;First, register for Google Analytics with your Google account, if you haven&amp;#39;t done so already.&lt;/p&gt;
+
+&lt;p&gt;Then, add the code snippet provided in the &lt;a href=&quot;https://support.google.com/analytics/answer/1008080?hl=en&amp;amp;ref_topic=1008079&quot;&gt;documentation&lt;/a&gt; into a Jekyll include, like &lt;code&gt;_includes/google_analytics.html&lt;/code&gt;. Replace the tracking code with a Liquid output:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;_gaq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;_setAccount&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;{{ site.google_analytics_id }}&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You could put your Google Analytics ID in the &lt;code&gt;_config.yml&lt;/code&gt;, but it&amp;#39;s best not to commit these kind of tokens inside the Git repository. Instead, I set it as an environment variable in the terminal that&amp;#39;s running the Jekyll build. In order to do this, I created a simple &lt;a href=&quot;https://github.com/nicolashery/nicolashery.com/blob/master/_plugins/environment_variables.rb&quot;&gt;environment_variables.rb&lt;/a&gt; plugin in which I add the line:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;google_analytics_id&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;GOOGLE_ANALYTICS_ID&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That way I can run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;GOOGLE_ANALYTICS_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;UA-XXXXX-Y&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Which will make the environment variable&amp;#39;s value available to the Liquid template through &lt;code&gt;site.google_analytics_id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As explained in Google&amp;#39;s documentation, include the snippet just before the closing &lt;code&gt;&amp;lt;/head&amp;gt;&lt;/code&gt; tag with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- ... --&amp;gt;&lt;/span&gt;
+  {% include google_analytics.html %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;deployment&quot;&gt;Deployment&lt;/h2&gt;
+
+&lt;p&gt;Deploying has a few different pieces that we&amp;#39;ll need to select:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A host for the static files (ex: &lt;a href=&quot;http://aws.amazon.com/s3/&quot;&gt;Amazon S3&lt;/a&gt;, &lt;a href=&quot;https://help.github.com/categories/20/articles&quot;&gt;GitHub Pages&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;A registrar for the domain name (ex: &lt;a href=&quot;https://www.gandi.net/&quot;&gt;Gandi&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Optionally, a separate &lt;a href=&quot;http://en.wikipedia.org/wiki/Domain_Name_System&quot;&gt;DNS&lt;/a&gt; provider (ex: &lt;a href=&quot;https://dnsimple.com/&quot;&gt;DNSimple&lt;/a&gt;, &lt;a href=&quot;http://aws.amazon.com/route53/&quot;&gt;Amazon Route 53&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Optionally, a CDN (ex: &lt;a href=&quot;http://aws.amazon.com/cloudfront/&quot;&gt;CloudFront&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As mentioned at the beginning of this post, one advantage of a static website is that it can be deployed to just about any host that can serve static files. Here I&amp;#39;ll explain how to deploy to &lt;a href=&quot;http://aws.amazon.com/s3/&quot;&gt;Amazon S3&lt;/a&gt;, which has a &amp;quot;pay-according-to-traffic&amp;quot; pricing model (it ends up being pretty cheap, unless you really have a ton of traffic). If you don&amp;#39;t have many images or other big files, &lt;a href=&quot;https://help.github.com/categories/20/articles&quot;&gt;GitHub Pages&lt;/a&gt; is also a nice option.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;m also going to explain how to host your site at the &amp;quot;root&amp;quot; (or &amp;quot;naked&amp;quot; or &amp;quot;apex&amp;quot;) domain (i.e. &amp;quot;nicolashery.com&amp;quot; instead of &amp;quot;www.nicolashery.com&amp;quot;), which is a little more tricky. This is my preference, but if you&amp;#39;d like to host at the &amp;quot;www&amp;quot; domain, you should be able to adapt these instructions fairly easily.&lt;/p&gt;
+
+&lt;p&gt;Pushing a Jekyll website to Amazon S3 is really easy, thanks to the &lt;a href=&quot;https://github.com/laurilehmijoki/jekyll-s3&quot;&gt;jekyll-s3&lt;/a&gt; tool. Create an &lt;a href=&quot;http://aws.amazon.com/&quot;&gt;Amazon Web Services&lt;/a&gt; (AWS) account if you don&amp;#39;t have one already, then install the tool with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem install jekyll-s3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the Amazon S3 console, create a bucket (select the &amp;quot;US Standard&amp;quot; region) with a name that matches your domain name, (in my case &amp;quot;nicolashery.com&amp;quot;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Since I&amp;#39;m hosting at the root domain &amp;quot;nicolashery.com&amp;quot;, I will also create a second bucket &amp;quot;www.nicolashery.com&amp;quot; that I will leave empty, and configure it to redirect all requests to &amp;quot;nicolashery.com&amp;quot;, as explained in the &lt;a href=&quot;http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html&quot;&gt;AWS documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, create a &lt;code&gt;_jekyll_s3.yml&lt;/code&gt; file with your Amazon credentials declared as environment variables:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;s3_id&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;&amp;lt;%= ENV[&amp;#39;S3_ID&amp;#39;] %&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;s3_secret&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;&amp;lt;%= ENV[&amp;#39;S3_SECRET&amp;#39;] %&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;s3_bucket&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;nicolashery.com&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;gzip&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Obtain your Amazon credentials from the AWS console (click on your name in the top right and &amp;quot;Security Credentials&amp;quot;), and set the environment variables:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S3_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR_AWS_S3_ACCESS_KEY_ID&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;S3_SECRET&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR_AWS_S3_SECRET_ACCESS_KEY&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once that is done, run the S3 bucket configuration tool provided with &lt;code&gt;jekyll-s3&lt;/code&gt;, which will prepare it to host a static website (for now, say &amp;quot;no&amp;quot; when it asks you if you want to configure it for the CloudFront CDN):&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;configure-s3-website --config-file _jekyll_s3.yml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, build your site for production and deploy to Amazon S3 with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;grunt build
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jekyll-s3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can already visit the live site with the &lt;code&gt;example.com.s3-website-us-east-1.amazonaws.com&lt;/code&gt; address provided (replace &amp;quot;example.com&amp;quot; with your domain of course). &lt;/p&gt;
+
+&lt;p&gt;To point our domain name to this Amazon S3 bucket, we need to configure its DNS records. If we were hosting at the &amp;quot;www.example.com&amp;quot; domain, all we would need to do is create a &lt;code&gt;CNAME&lt;/code&gt; record:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;CNAME www.example.com www.example.com.s3-website-us-east-1.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, we are hosting at the root domain &amp;quot;example.com&amp;quot;, which requires an &lt;code&gt;A&lt;/code&gt; record that has to point to an IP address. This is where it gets tricky: the IP address of our Amazon S3 can change.&lt;/p&gt;
+
+&lt;p&gt;To work around that, we need to use a separate DNS provider, &lt;a href=&quot;https://dnsimple.com/&quot;&gt;DNSimple&lt;/a&gt; or &lt;a href=&quot;http://aws.amazon.com/route53/&quot;&gt;Amazon Route 53&lt;/a&gt;. They both have special &lt;code&gt;ALIAS&lt;/code&gt; records (&lt;a href=&quot;http://support.dnsimple.com/articles/alias-record&quot;&gt;DNSimple ALIAS&lt;/a&gt;, &lt;a href=&quot;http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/HowToAliasRRS.html&quot;&gt;Route 53 ALIAS&lt;/a&gt;) that allow you to point a root domain (&amp;quot;example.com&amp;quot;) to another domain, much like a &lt;code&gt;CNAME&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the case of DNSimple, we create two records:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ALIAS example.com example.com.s3-website-us-east-1.amazonaws.com
+CNAME www.example.com www.example.com.s3-website-us-east-1.amazonaws.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To use a separate DNS provider, you need to configure your registrar (mine is &lt;a href=&quot;https://www.gandi.net/&quot;&gt;Gandi&lt;/a&gt;) to point to its DNS servers.&lt;/p&gt;
+
+&lt;p&gt;I won&amp;#39;t dive right now into how to configure a CDN like &lt;a href=&quot;http://aws.amazon.com/cloudfront/&quot;&gt;CloudFront&lt;/a&gt;. Different CDN, DNS, host combinations could be a whole other article. Feel free to read through the CloudFront documentation, it should be pretty straighforward to set up using &lt;code&gt;jekyll-s3&lt;/code&gt; and Route 53.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Using Jekyll does require a bit of tinkering and setting up, but hopefully this walkthrough will help you get started faster.&lt;/p&gt;
+
+&lt;p&gt;I like the fact that creating &amp;quot;from scratch&amp;quot; forces you to learn and understand what goes into making a fast and modern website. I also appreaciate the flexibility it gives you, since you can use plugins and other tools like Grunt to adapt it to what&amp;#39;s specific about your project.&lt;/p&gt;
+
+&lt;p&gt;Did you find this article helpful? Do you use Jekyll and have a different workflow you&amp;#39;d like to share? Feel free to reach out!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 19 Oct 2014 00:00:00 +0200</pubDate>
+        <link>http://biojazzard.github.io/Website-con-Jekyll+Bower+Grunt+Browserify/</link>
+        <guid isPermaLink="true">http://biojazzard.github.io/Website-con-Jekyll+Bower+Grunt+Browserify/</guid>
+      </item>
+    
+  </channel>
+</rss>
