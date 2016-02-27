@@ -1,0 +1,201 @@
+/* Solarized Dark 
+
+For use with Jekyll and Pygments
+
+http://ethanschoonover.com/solarized
+
+SOLARIZED HEX      ROLE
+--------- -------- ------------------------------------------
+base03    #002b36  background
+base01    #586e75  comments / secondary content
+base1     #93a1a1  body text / default code / primary content
+orange    #cb4b16  constants
+red       #dc322f  regex, special keywords
+blue      #268bd2  reserved keywords
+cyan      #2aa198  strings, numbers
+green     #859900  operators, other keywords
+*/
+
+@operator:      hsla(60, 8%, 57%, 1); // Gris amarillo claro
+
+@keyword:       hsla(120, 82%, 34%, 1); // Green
+@regex:         hsla(125, 82%, 44%, 1); // Green Mid
+@insertedSpec:  hsla(120, 82%, 83%, 1); // Green Light
+@inserted:      hsla(120, 82%, 93%, 1); // Green ultralight
+
+@prompt:        hsla(10, 0%, 33%, 1); // Gray dark
+@output:        hsla(10, 0%, 53%, 1); // Gray
+@generic:       hsla(10, 0%, 60%, 1); // Gris claro
+@subhead:       hsla(10, 0%, 67%, 1); // Gray Light
+@whitespace:    hsla(10, 0%, 73%, 1); // Gray Lighter
+
+@classes:       hsla(195, 90%, 22%, 1); // Blue-Mid-white
+@builtin:       hsla(195, 90%, 35%, 1); // Blue Mid
+
+@tag:           hsla(180, 100%, 15%, 1); // Blue dark
+@attribute:     hsla(180, 100%, 23%, 1); // Turq.
+@number:        hsla(180, 100%, 33%, 1); // Turq. Light
+
+@string:        hsla(345, 86%, 47%, 1); // Rosa Oscuro
+@symbol:        hsla(345, 86%, 30%, 1); // Morado Oscuro
+
+@exception:     hsla(0, 100%, 30%, 1); // Granate
+@emphasis:      hsla(0, 100%, 36%, 1); // Granate
+@deleteSpec:    hsla(0, 100%, 83%, 1); // Rosa Medio
+@deleted:        hsla(0, 100%, 93%, 1); // Rosa Claro
+
+.highlight {
+  background: @white;
+
+  .k // Keyword
+  { font-weight: bold;
+    color: @keyword; // Verde oscuro
+  }
+ 
+  .o // Operator
+  { font-weight: bold } 
+
+  .c   // Comment
+  , .cm  // Comment.Multiline
+  , .c1  // Comment.Single
+  { color: @operator; // Gris Amarillento
+    font-style: italic
+  }
+
+    .bp // Name.Builtin.Pseudo
+  , .cp // Comment.Preproc
+  , .cs // Comment.Special
+  , .gh // Generic.Heading
+  { color: @generic; // Gris Medio
+  } 
+
+  .cp // Comment.Preproc
+  , .cs // Comment.Special
+  {font-weight: bold;}
+  
+  .cs // Comment.Special
+  { font-style: italic } 
+
+  .gd // Generic.Deleted
+  { color: @black;
+    background-color: @deleted;
+  }
+
+  .gd .x // Generic.Deleted.Specific
+  { background-color: @deleteSpec; // Rosa Claro
+  }
+
+  .ge // Generic.Emph
+  { font-style: italic } 
+
+  .gr // Generic.Error
+  , .gt // Generic.Traceback
+  { color: @emphasis; // Rojo Oscuro
+  }
+
+  .gi // Generic.Inserted
+  { color: @black; 
+    background-color: @inserted; // Verde Claro
+  }
+
+  .gi .x // Generic.Inserted.Specific
+  { background-color: @insertedSpec; // Verde Claro
+  }
+
+  .go // Generic.Output
+  { color: @output; // 
+  }    
+
+  .gp // Generic.Prompt
+  , .nn // Name.Namespace
+  { color: @prompt; // Gris oscuro
+  }    
+
+  .gs // Generic.Strong
+  { font-weight: bold } 
+
+  .gu // Generic.Subheading
+  { color: @subhead; // Gris Claro
+  }    
+
+  .kc // Keyword.Constant
+  , .kd // Keyword.Declaration
+  , .kp // Keyword.Pseudo
+  , .kr // Keyword.Reserved
+  , .kt // Keyword.Type
+  { font-weight:bold; }
+
+    .nc // Name.Class
+  , .kt { color: @classes; // Morado Claro 
+  } 
+ 
+  .na // Name.Attribute
+  , .no // Name.Constant
+  , .ni // Name.Entity
+  , .nv // Name.Variable
+  , .vc // Name.Variable.Class
+  , .vg // Name.Variable.Global
+  , .vi // Name.Variable.Instance
+  { color: @attribute; //Turquesa
+  } 
+
+  .nb // Name.Builtin
+  { color: @builtin; // Azul Medio
+  } 
+
+  .nc // Name.Class
+  { font-weight: bold } 
+
+  .ne // Name.Exception
+  { color: @exception; // Rojo
+    font-weight: bold
+  } 
+
+  .nf // Name.Function
+  { } 
+
+  .nt // Name.Tag
+  { color: @tag; // Azul oscuro
+  }
+
+  .nx // Name.Functions
+  { color: @symbol; // Morado oscuro
+  } 
+ 
+  .ow // Operator.Word
+  { font-weight: bold } 
+
+  .w // Text.Whitespace
+  { color: @whitespace; // gris
+  } 
+
+  .m  // Literal.Number
+  , .mf // Literal.Number.Float
+  , .mh // Literal.Number.Hex
+  , .mi // Literal.Number.Integer
+  , .mo // Literal.Number.Oct
+  , .il // Literal.Number.Integer.Long
+  { color: @number; // Aqua
+  } 
+
+  .s  // Literal.String
+  , .sb // Literal.String.Backtick
+  , .s1 // Literal.String.Single
+  , .sx // Literal.String.Other
+  , .si // Literal.String.Interpol
+  , .sh // Literal.String.Heredoc
+  , .se // Literal.String.Escape
+  , .s2 // Literal.String.Double
+  , .sd // Literal.String.Doc
+  , .sc // Literal.String.Char
+  { color: @string; // Rosa
+  } 
+  
+  .sr // Literal.String.Regex
+  { color: @regex; // Verde
+  } 
+  
+  .ss // Literal.String.Symbol
+  { color: @symbol; // Morado
+  } 
+}

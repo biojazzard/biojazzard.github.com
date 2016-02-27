@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>dot-a</title>
+    <desc>By Alfredo Llanos.</desc>
+    <defs></defs>
+    <g id="dot-a-group" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M0.822359918,1 C0.822359918,1 213.917668,1 213.917668,1 C313.962414,1 398,83 398,181 L398,399 L215.461175,399 C215.461175,399 235.779007,206.391418 0.822359918,227.700012 C0.822359918,227.700012 0.351926838,170.744755 0.822359918,170.540009 C156.257818,102.889999 214.594592,195.34375 214.594592,195.34375 C214.594592,195.34375 224.781902,50.0657806 0.822359918,102.889999 C0.822354555,102.890001 0.822359918,1 0.822359918,1 Z M0.822359918,242.170013 C0.822359918,242.170013 0.654316009,397.332031 0.654316009,397.332031 L148.619246,397.332031 C148.619246,397.332031 154.039325,247.482513 0.822359918,242.170013 Z" id="dot-a" stroke="#000000" fill="#000000" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

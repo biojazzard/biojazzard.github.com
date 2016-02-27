@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="main-container">
+  <header class="title">
+      <div class="background-image-holder parallax-background">
+        <img class="background-image" alt="Background Image" src="{{ site.baseurl }}/img/hero10.jpg">
+      </div>
+      
+      <div class="container align-bottom">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 class="text-white">{{ page.title }}</h1>
+            <span class="sub alt-font text-white">{{ page.date | date: "%d %B, %Y" }}</span>
+          </div>
+        </div><!--end of row-->
+      </div><!--end of container-->
+  </header>
+
+  {{ content }}
+
+</div>

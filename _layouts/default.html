@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+    {% if page.home %}
+      <title>Alfredo Llanos - Web development.</title>
+    {% else %}
+      <title>{{ page.title }} - Alfredo Llanos</title>
+    {% endif %}
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {% if site.env == 'production' %}
+      {% if page.home %}
+      <!-- build:css ./build/style.un.min.css -->
+      <link rel="stylesheet" href="./build/style.css">
+      <!-- /build -->
+      {% else %}
+      <!-- build:css ../build/style.un.min.css -->
+      <link rel="stylesheet" href="../build/style.css">
+      <!-- /build -->
+      {% endif %}
+    {% else %}
+      {% if page.home %}
+      <!-- build:css ./debug/style.un.min.css -->
+      <link rel="stylesheet" href="./debug/style.css">
+      <!-- /build -->
+      {% else %}
+      <!-- build:css ../debug/style.un.min.css -->
+      <link rel="stylesheet" href="../debug/style.css">
+      <!-- /build -->
+      {% endif %}
+    {% endif %}
+
+    <link href='http://fonts.googleapis.com/css?family=Arvo:700,700italic|Roboto:400italic,100,300,100italic,300italic,400' rel='stylesheet' type='text/css'>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  </head>
+<body>
+
+  {% include header.html %}
+
+  {% if page.home %}
+    {% include home.html %}
+    {% include blog-strip.html %}
+  {% else %}
+  {% endif %}
+
+  {{ content }}
+
+  {% include footer.html %}
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  {% if site.env == 'production' %}
+    {% if page.home %}
+    <script src="./build/build.min.js"></script>
+    {% else %}
+    <script src="../build/build.min.js"></script>
+    {% endif %}
+  {% else %}
+    <script src="{{ site.baseurl }}/debug/build.js"></script>
+  {% endif %}
+
+</body>
+</html>

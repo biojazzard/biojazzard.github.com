@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="401px" height="401px" viewBox="0 0 401 401" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>smiley</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="smiley" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval" stroke="#000000" stroke-width="0.15" fill="#FFFF00" sketch:type="MSShapeGroup" cx="199.5" cy="199.5" r="199.5"></circle>
+            <g id="right" transform="translate(109.725000, 89.775000)" sketch:type="MSShapeGroup">
+                <ellipse id="Eye" fill="#000000" cx="24.9375" cy="39.9" rx="24.9375" ry="39.9"></ellipse>
+                <path d="M195.51,136.6575 C200.168965,154.740178 216.746119,167.173043 235.41,166.5825" id="Chick" stroke="#000000" stroke-width="8" stroke-linecap="round"></path>
+            </g>
+            <g id="right-link" transform="translate(171.775000, 173.275000) scale(-1, 1) translate(-171.775000, -173.275000) translate(54.275000, 89.775000)" sketch:type="MSShapeGroup">
+                <g id="right" transform="translate(-0.000000, -0.000000)">
+                    <ellipse id="Eye" fill="#000000" cx="24.9375" cy="39.9" rx="24.9375" ry="39.9"></ellipse>
+                    <path d="M195.51,136.6575 C200.168965,154.740178 216.746119,167.173043 235.41,166.5825" id="Chick" stroke="#000000" stroke-width="8" stroke-linecap="round"></path>
+                </g>
+            </g>
+            <path d="M79.8,249.375 C102.895532,294.186914 149.086596,322.345532 199.5,322.345532 C249.913404,322.345532 296.104468,294.186914 319.2,249.375 C299.06542,297.697992 251.849908,329.175 199.5,329.175 C147.150092,329.175 99.9345799,297.697992 79.8,249.375" id="Smile" stroke="#000000" stroke-width="8" fill="#000000" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

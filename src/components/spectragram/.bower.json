@@ -1,0 +1,13 @@
+{
+  "name": "spectragram",
+  "homepage": "https://github.com/adrianengine/jquery-spectragram",
+  "_release": "0e3a13114e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0e3a13114e6963bc2f897774834b66dbf10b8f5d"
+  },
+  "_source": "git@github.com:adrianengine/jquery-spectragram.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:adrianengine/jquery-spectragram.git"
+}

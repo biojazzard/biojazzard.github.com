@@ -1,0 +1,13 @@
+{% for post in site.posts %}
+<div class="blog-snippet-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+        {{ content }}
+        <i class="icon icon_calendar"></i><span class="alt-font">{{ post.date | date: "%d %B, %Y" }}</span><br>
+      </div>
+    </div><!--end of row-->
+  </div><!--end of container--> 
+</div>
+{% endfor %}

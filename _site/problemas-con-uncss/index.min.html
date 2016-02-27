@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+    
+      <title>Problemas con uncss - Alfredo Llanos</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+      
+      <link rel="stylesheet" href="../build/style.un.min.css">
+      
+    
+
+    <link href='http://fonts.googleapis.com/css?family=Arvo:700,700italic|Roboto:400italic,100,300,100italic,300italic,400' rel='stylesheet' type='text/css'>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/snap.svg/0.3.0/snap.svg-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  </head>
+<body>
+
+  <div class="loader">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="nav-container">
+  <nav class="top-bar overlay-bar offscreen-menu drop-shadow">
+
+    <div class="container">
+    
+      <div class="row utility-menu">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="utility-inner clearfix">
+            <span class="alt-font btn-sm">
+              <i class="icon icon_pin"></i> Bilbao | 43.2569° N, 2.9236° W</span>
+            <div class="pull-right">
+              <ul class="social-icons text-right">
+                <li>
+                  <a href="https://twitter.com/biojazzard">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/alfredo.llanos">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://plus.google.com/+AlfredoLlanos/">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div><!--end of row-->
+    
+    
+      <div class="row nav-menu">
+        <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+          <a href="/">
+            <div id="logo" class="logo" data-src="http://biojazzard.github.io/_site/img/dot-a.svg" data-desc="DOT-A Alfredo Llanos">
+            </div>
+          </a>
+        </div>
+      
+        <div class="col-sm-9 col-sm-9 col-md-10 col-lg-10">
+          <div class="offscreen-toggle">
+            <i class="icon icon_menu text-white pull-right"></i>
+          </div>
+        </div>
+      </div><!--end of row-->
+      
+    </div><!--end of container-->
+
+    <div class="offscreen-container">
+        <div class="made-with">
+          Made with Love ...
+        </div>
+        <div id="smiley" class="smiley" data-src="http://biojazzard.github.io/_site/img/smiley.svg" data-desc="smiley">
+        </div>
+        <div class="made-with to-bottom">
+          and some acid tracks!,
+        </div>
+    </div>
+
+  </nav>
+</div>
+
+  
+  
+
+  <div class="main-container">
+  <header class="title">
+      <div class="background-image-holder parallax-background">
+        <img class="background-image" alt="Background Image" src="http://biojazzard.github.io/_site/img/hero10.jpg">
+      </div>
+      
+      <div class="container align-bottom">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 class="text-white">Problemas con uncss</h1>
+            <p><span class="sub alt-font text-white">17 November, 2014</span></p>
+          </div>
+        </div><!--end of row-->
+      </div><!--end of container-->
+  </header>
+  
+  <section class="article-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+          <div class="article-body">
+            <p><strong>uncss</strong> <code>npm install -g uncss</code> promete mucho pero no lo puedo usar por ahora en producción.</p>
+
+<h1>Resumen</h1>
+
+<p>No usable en producción salvo en casos concretos.</p>
+
+<h2>1. Principalmente por este asunto:</h2>
+
+<p><a href="https://github.com/giakki/uncss/issues/74">Github:UnCSS ignoring complex selectors #74</a></p>
+
+<h3>Escenario</h3>
+
+<p>El documento original contiene:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;menu&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div>
+<p>Cuando alguien hace lo necesario, el menu se abre: añadiéndole la clase &quot;open&quot;.</p>
+<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nx">$</span><span class="p">(</span><span class="s">&#39;menu-open-btn&#39;</span><span class="p">).</span><span class="nx">on</span> <span class="s">&#39;click&#39;</span><span class="p">,</span> <span class="nf">()-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.menu&#39;</span><span class="p">).</span><span class="nx">addClass</span> <span class="s">&#39;open&#39;</span>
+</code></pre></div>
+<p>Obtenemos:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;menu open&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div>
+<p>El css sería:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.menu</span> <span class="p">{</span>
+  <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Fail:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="o">//</span> <span class="nt">Houston</span><span class="o">,</span> <span class="nt">We</span><span class="err">&#39;</span><span class="nt">ve</span> <span class="nt">Had</span> <span class="nt">a</span> <span class="nt">Problem</span>
+<span class="o">//</span> <span class="nt">UNCSS</span> <span class="nt">No</span> <span class="nt">lo</span> <span class="nt">pilla</span><span class="o">:</span> <span class="o">&gt;</span><span class="nt">_</span><span class="o">&lt;</span>
+<span class="nc">.menu.open</span> <span class="p">{</span>
+  <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Este escenario es representativo de muchos otros. Lo que hace <strong>uncss</strong> poco usable.</p>
+
+<h3>Solución</h3>
+
+<p>Si no excedes el uso de selectores complejos, puedes pasar a <strong>uncss</strong> el parametro <code>ignore</code> con los selectores que conozcas que quieras preservar:</p>
+<div class="highlight"><pre><code class="language-coffeescript" data-lang="coffeescript"><span class="nv">uncss:</span>
+  <span class="nv">dist:</span>
+    <span class="nv">options:</span>
+      <span class="nv">ignore: </span><span class="p">[</span>
+        <span class="s">&#39;.menu.open&#39;</span>
+      <span class="p">]</span>
+    <span class="nv">files:</span>
+      <span class="s">&#39;./_site/build/style.un.css&#39;</span><span class="o">:</span> <span class="p">[</span><span class="s">&#39;./_site/{,*/}*.html&#39;</span><span class="p">,</span> <span class="s">&#39;./_site/theme/{,*/}*.html&#39;</span><span class="p">]</span>
+</code></pre></div>
+<h2>2. Manejo de errores, es fácil que acabes así:</h2>
+
+<p><a href="https://github.com/addyosmani/grunt-uncss/issues/34">Fatal error: missing &#39;{&#39; near line ...</a></p>
+
+<p>El manejo de errores no es más fino de la escena, y peta. Si usas <strong>grunt</strong>, te petará el proceso.</p>
+
+          </div><!--end of article body-->
+        </div>
+      </div><!--end of row-->
+      
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+          <div class="author-details">
+            <div id="logo-author" class="logo-author" data-src="http://biojazzard.github.io/_site/img/dot-a.svg" data-desc="DOT-A Alfredo Llanos">
+            </div>
+            <h5>Alfredo Llanos</h5>
+            <p>
+              Web Developer. Bilbao
+            </p>
+            <ul class="social-icons text-right">
+              <li>
+                <a href="https://twitter.com/biojazzard">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://www.facebook.com/alfredo.llanos">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://plus.google.com/+AlfredoLlanos/">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!--end of row-->
+      
+    </div><!--end of container--> 
+  </section>
+</div>
+
+  <div class="footer-container">
+
+  <footer class="details">
+    <div class="container">
+
+      <div class="row ui-sortable">
+        <div class="col-sm-12">
+          <span class="sub">
+            © 2014
+            <a href="#">Alfredo Llanos</a>
+            &nbsp;- Todos los derechos reservados.
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+    
+    <script src="../build/build.min.js"></script>
+    
+  
+
+</body>
+</html>
