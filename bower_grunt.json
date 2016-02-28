@@ -1,0 +1,14 @@
+{
+  "name": "alfredo.llanos.",
+  "version": "0.0.3",
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "fastclick": "~0.6.10",
+    "skrollr": "*",
+    "jquery-smooth-scroll": "*",
+    "scrollReveal.js": "*",
+    "spectragram": "git@github.com:adrianengine/jquery-spectragram.git",
+    "flexslider": "*",
+    "bootstrap": "*"
+  }
+}

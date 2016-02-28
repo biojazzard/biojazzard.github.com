@@ -2,40 +2,50 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>
-            http://biojazzard.github.iohttp://biojazzard.github.io/Website-con-Jekyll+Bower+Grunt+Browserify/
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/Website-con-Jekyll+Bower+Grunt+Browserify/
         </loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
         <loc>
-            http://biojazzard.github.iohttp://biojazzard.github.io/Automatic-Deployments-with-BitBucket/
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/Automatic-Deployments-with-BitBucket/
         </loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
         <loc>
-            http://biojazzard.github.iohttp://biojazzard.github.io/Deploy-de-un-sitio-web-con-git/
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/Deploy-de-un-sitio-web-con-git/
         </loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
-        <loc>http://biojazzard.github.iohttp://biojazzard.github.io/problemas-con-uncss/</loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <loc>
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/problemas-con-uncss/
+        </loc>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
-        <loc>http://biojazzard.github.iohttp://biojazzard.github.io/error/</loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <loc>
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/error/
+        </loc>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
-        <loc>http://biojazzard.github.iohttp://biojazzard.github.io/</loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <loc>
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/
+        </loc>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
-        <loc>http://biojazzard.github.iohttp://biojazzard.github.io/theme/</loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <loc>
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/theme/
+        </loc>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
     <url>
-        <loc>http://biojazzard.github.iohttp://biojazzard.github.io/isotope/</loc>
-        <lastmod>2015-01-26T19:56:43+01:00</lastmod>
+        <loc>
+            http://biojazzard.github.iohttp://localhost/tallerdelsoho.es/alfredo.llanos/_site/isotope/
+        </loc>
+        <lastmod>2016-02-28T10:30:16+01:00</lastmod>
     </url>
 </urlset>
