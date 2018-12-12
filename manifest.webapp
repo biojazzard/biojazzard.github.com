@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "Alfredo Llanos",
+  "description": "Alfredo Llanos: Web Development",
+  "icons": {
+    "60": "src/favicons/firefox_app_60x60.png",
+    "128": "src/favicons/firefox_app_128x128.png",
+    "512": "src/favicons/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": "Alfredo Llanos",
+    "url": "https://1un.es/"
+  }
+}
