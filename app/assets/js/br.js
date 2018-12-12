@@ -12565,7 +12565,7 @@ $(document).ready(function() {
     if (mode !== '') {
       $('body').addClass(mode);
     }
-    rule = `@page { ${size} ${orientation};}`;
+    rule = '@page { #{size} #{orientation};}';
     index = 0;
     styleSheet.deleteRule(index);
     styleSheet.insertRule(rule, index);
@@ -12673,6 +12673,17 @@ $(document).ready(function() {
    */
   key('a', function() {
     return changeA();
+  });
+  $('[data-mode]').on('click', function() {
+    var mode;
+    mode = $(this).attr('data-mode');
+    if (mode === 'dark' && $('body').hasClass('dark')) {
+      $('body').removeClass('dark');
+      return $(this).attr('data-mode', '');
+    } else {
+      $('body').addClass('dark');
+      return $(this).attr('data-mode', 'dark');
+    }
   });
   return $('[data-orientation]').on('click', function() {
     var orientation, orientationAlt, orientationOrig;
