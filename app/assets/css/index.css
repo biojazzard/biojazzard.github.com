@@ -73,6 +73,7 @@ body.dark aside {
 body.dark > .sheet {
   background: linear-gradient(-45deg, #b65133, #ac2a5c, #116280, #23D5AB);
   background-size: 400% 400%;
+  background-image: url(../svg/dot-a-bg.svg);
   -webkit-animation: Lunes 18s ease-in-out infinite;
   -moz-animation: Lunes 18s ease-in-out infinite;
   -o-animation: Lunes 18s ease-in-out infinite;
@@ -90,21 +91,22 @@ body.dark h3 {
 body.A5 {
   display: flex;
 }
-body.A5 section {
+body.A5.landscape section {
   display: flex;
   flex-direction: unset;
+  height: 148mm !important;
 }
 body.A5.portait section {
   display: flex;
   flex-direction: column;
 }
 body.A4 {
-  display: flex;
   display: flow-root;
 }
-body.A4 section {
+body.A4.landscape section {
   display: flex;
   flex-direction: unset;
+  height: 210mm !important;
 }
 body.A4.portait {
   display: flow-root;
@@ -552,6 +554,7 @@ a {
 }
 @media print {
   body {
+    display: block;
     background: none;
   }
   body.A5 {
